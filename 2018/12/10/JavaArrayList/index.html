@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content>
+    <meta name="keyword" content="MQ">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        JavaArrayList - MQ&#39;s Logbook
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> The faintest ink is better than the best memory. </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.png" />
+        </div>
+        <div class="name">
+            <i>MQ</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#_构造"><span class="toc-text">1. 构造</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#_初探"><span class="toc-text">1.1. 初探</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#_数组排序"><span class="toc-text">1.2. 数组排序</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#_arrays_sort_方法的实现"><span class="toc-text">1.2.1. Arrays.sort 方法的实现</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#_binary_sort_算法"><span class="toc-text">1.2.2. binary sort 算法</span></a></li></ol></li></ol></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> The faintest ink is better than the best memory. </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        JavaArrayList
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2018-12-10 20:59:21</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#Java" title="Java">Java</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#Algorithme" title="Algorithme">Algorithme</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content no-indent">
+        <div class="sect1">
+<h2 id="_构造">1. 构造</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>之前因为工作需要，特意认真了看了一个jdk8源码中ArrayList的实现，简单记录一下。</p>
+</div>
+<div class="sect2">
+<h3 id="_初探">1.1. 初探</h3>
+<div class="paragraph">
+<p>ArrayList 一般被成为动态数组，因为它的大小可以动态变化。</p>
+</div>
+<div class="paragraph">
+<p>一般来说我们直接构建一个 <strong>ArrayList</strong> 数组，之后可以通过 <strong>add</strong> 方法来添加元素， <strong>remove</strong> 方法
+来去除元素。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">ArrayList&lt;Class&gt; myList = <span class="keyword">new</span> ArrayList&lt;Class&gt;();
+
+myList.add(<span class="string">"E"</span>)
+
+myList.remove(<span class="string">"E"</span>)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>ArrayList 通常使用它的缓冲数组 <strong>Object[] elementData</strong> 来进行数据存储，这时动态数组的大小也就是 Object[] elementData 缓冲数组的大小。</p>
+</div>
+<div class="paragraph">
+<p>当一个ArrayList 为 <strong>空</strong> empty时，缓冲数组 Object[] elementData 等于 空数组 Object[] EMPTY_ELEMENTDATA。</p>
+</div>
+<div class="paragraph">
+<p>当有一个元素被添加到空的ArrayList中时，elementData 的大小将被扩展至 <strong>DEFAULT_CAPACITY</strong>， 这里DEFAULT_CAPACITY 一般定义为10。</p>
+</div>
+<div class="listingblock">
+<div class="title">部分源码</div>
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ArrayList</span>&lt;<span class="title">E</span>&gt; <span class="keyword">extends</span> <span class="title">AbstractList</span>&lt;<span class="title">E</span>&gt;</span>
+<span class="class">        <span class="keyword">implements</span> <span class="title">List</span>&lt;<span class="title">E</span>&gt;, <span class="title">RandomAccess</span>, <span class="title">Cloneable</span>, <span class="title">java</span>.<span class="title">io</span>.<span class="title">Serializable</span></span>
+<span class="class"></span>&#123;
+  <span class="comment">/**</span>
+<span class="comment">   * Default initial capacity.</span>
+<span class="comment">   */</span>
+  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> DEFAULT_CAPACITY = <span class="number">10</span>;
+
+  <span class="comment">/**</span>
+<span class="comment">   * Shared empty array instance used for empty instances.</span>
+<span class="comment">   */</span>
+  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Object[] EMPTY_ELEMENTDATA = &#123;&#125;;
+
+  <span class="comment">/**</span>
+<span class="comment">   * Shared empty array instance used for default sized empty instances. We</span>
+<span class="comment">   * distinguish this from EMPTY_ELEMENTDATA to know how much to inflate when</span>
+<span class="comment">   * first element is added.</span>
+<span class="comment">   */</span>
+  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Object[] DEFAULTCAPACITY_EMPTY_ELEMENTDATA = &#123;&#125;;
+
+  <span class="comment">/**</span>
+<span class="comment">   * The array buffer into which the elements of the ArrayList are stored.</span>
+<span class="comment">   * The capacity of the ArrayList is the length of this array buffer. Any</span>
+<span class="comment">   * empty ArrayList with elementData == DEFAULTCAPACITY_EMPTY_ELEMENTDATA</span>
+<span class="comment">   * will be expanded to DEFAULT_CAPACITY when the first element is added.</span>
+<span class="comment">   */</span>
+  <span class="keyword">transient</span> Object[] elementData; <span class="comment">// non-private to simplify nested class access</span>
+
+  <span class="comment">/**</span>
+<span class="comment">   * The size of the ArrayList (the number of elements it contains).</span>
+<span class="comment">   *</span>
+<span class="comment">   * <span class="doctag">@serial</span></span>
+<span class="comment">   */</span>
+  <span class="keyword">private</span> <span class="keyword">int</span> size;
+
+  ...
+
+&#125;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_数组排序">1.2. 数组排序</h3>
+<div class="paragraph">
+<p>排序之前，获取 <strong>modCount</strong> 值作为期望值，如果排序后 modCount值不同于期望值，这时候就要刨除异常。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java"><span class="meta">@Override</span>
+<span class="meta">@SuppressWarnings</span>(<span class="string">"unchecked"</span>)
+<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sort</span><span class="params">(Comparator&lt;? <span class="keyword">super</span> E&gt; c)</span> </span>&#123;
+  <span class="keyword">final</span> <span class="keyword">int</span> expectedModCount = modCount;
+  Arrays.sort((E[]) elementData, <span class="number">0</span>, size, c);
+  <span class="keyword">if</span> (modCount != expectedModCount) &#123;
+      <span class="keyword">throw</span> <span class="keyword">new</span> ConcurrentModificationException();
+  &#125;
+  modCount++;
+&#125;</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">直接使用 <strong>Arrays.sort</strong> 方法来进行排序</div>
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">Arrays.sort((E[]) elementData, <span class="number">0</span>, size, c);</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>elementData : 数组</p>
+</li>
+<li>
+<p>0 ： fromIndex， 起始位</p>
+</li>
+<li>
+<p>size ： 数组的大小</p>
+</li>
+<li>
+<p>c ： Comparator  比较器</p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="_arrays_sort_方法的实现">1.2.1. Arrays.sort 方法的实现</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java"><span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; <span class="function"><span class="keyword">void</span> <span class="title">sort</span><span class="params">(T[] a, <span class="keyword">int</span> fromIndex, <span class="keyword">int</span> toIndex,</span></span>
+<span class="function"><span class="params">                            Comparator&lt;? <span class="keyword">super</span> T&gt; c)</span> </span>&#123;
+    <span class="keyword">if</span> (c == <span class="keyword">null</span>) &#123;
+        sort(a, fromIndex, toIndex);
+    &#125; <span class="keyword">else</span> &#123;
+        rangeCheck(a.length, fromIndex, toIndex);
+        <span class="keyword">if</span> (LegacyMergeSort.userRequested)
+            legacyMergeSort(a, fromIndex, toIndex, c);
+        <span class="keyword">else</span>
+            TimSort.sort(a, fromIndex, toIndex, c, <span class="keyword">null</span>, <span class="number">0</span>, <span class="number">0</span>);
+    &#125;
+&#125;</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>当比较器 <strong>c</strong> 的值为 *null*时，直接进行调用排序方法进行排序。</p>
+</li>
+<li>
+<p>当比较器不为 <strong>null</strong> 时，首先使用 <strong>rangeCheck</strong> 方法做边界测试。</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">直接使用sort方法进行排序（实现）</div>
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">sort</span><span class="params">(Object[] a, <span class="keyword">int</span> fromIndex, <span class="keyword">int</span> toIndex)</span> </span>&#123;
+    rangeCheck(a.length, fromIndex, toIndex);
+    <span class="keyword">if</span> (LegacyMergeSort.userRequested)
+        legacyMergeSort(a, fromIndex, toIndex);
+    <span class="keyword">else</span>
+        ComparableTimSort.sort(a, fromIndex, toIndex, <span class="keyword">null</span>, <span class="number">0</span>, <span class="number">0</span>);
+&#125;</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>rangeCheck</strong> 对数组a，起始位 fromIndex， 终止位 toIndex，做边界测试</p>
+<div class="ulist">
+<ul>
+<li>
+<p>如果用户选择使用 <strong>LegacyMergeSort</strong> 算法，用此算法进行排序</p>
+</li>
+<li>
+<p>否则使用 <strong>TimSort</strong> 算法进行排序</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>rangeCheck</strong> 边界测试（实现）</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">rangeCheck</span><span class="params">(<span class="keyword">int</span> arrayLength, <span class="keyword">int</span> fromIndex, <span class="keyword">int</span> toIndex)</span> </span>&#123;
+    <span class="keyword">if</span> (fromIndex &gt; toIndex) &#123;
+        <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(
+                <span class="string">"fromIndex("</span> + fromIndex + <span class="string">") &gt; toIndex("</span> + toIndex + <span class="string">")"</span>);
+    &#125;
+    <span class="keyword">if</span> (fromIndex &lt; <span class="number">0</span>) &#123;
+        <span class="keyword">throw</span> <span class="keyword">new</span> ArrayIndexOutOfBoundsException(fromIndex);
+    &#125;
+    <span class="keyword">if</span> (toIndex &gt; arrayLength) &#123;
+        <span class="keyword">throw</span> <span class="keyword">new</span> ArrayIndexOutOfBoundsException(toIndex);
+    &#125;
+&#125;</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title"><strong>LegacyMergeSort</strong> 算法</div>
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java"><span class="comment">/**</span>
+<span class="comment"> * Old merge sort implementation can be selected (for</span>
+<span class="comment"> * compatibility with broken comparators) using a system property.</span>
+<span class="comment"> * Cannot be a static boolean in the enclosing class due to</span>
+<span class="comment"> * circular dependencies. To be removed in a future release.</span>
+<span class="comment"> */</span>
+<span class="keyword">static</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">LegacyMergeSort</span> </span>&#123;
+  .....
+&#125;</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title"><strong>TimSort</strong> 算法</div>
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java"><span class="comment">/**</span>
+<span class="comment">    * Sorts the given range, using the given workspace array slice</span>
+<span class="comment">    * for temp storage when possible. This method is designed to be</span>
+<span class="comment">    * invoked from public methods (in class Arrays) after performing</span>
+<span class="comment">    * any necessary array bounds checks and expanding parameters into</span>
+<span class="comment">    * the required forms.</span>
+<span class="comment">    *</span>
+<span class="comment">    * <span class="doctag">@param</span> a the array to be sorted</span>
+<span class="comment">    * <span class="doctag">@param</span> lo the index of the first element, inclusive, to be sorted</span>
+<span class="comment">    * <span class="doctag">@param</span> hi the index of the last element, exclusive, to be sorted</span>
+<span class="comment">    * <span class="doctag">@param</span> c the comparator to use</span>
+<span class="comment">    * <span class="doctag">@param</span> work a workspace array (slice)</span>
+<span class="comment">    * <span class="doctag">@param</span> workBase origin of usable space in work array</span>
+<span class="comment">    * <span class="doctag">@param</span> workLen usable size of work array</span>
+<span class="comment">    * <span class="doctag">@since</span> 1.8</span>
+<span class="comment">    */</span>
+   <span class="keyword">static</span> &lt;T&gt; <span class="function"><span class="keyword">void</span> <span class="title">sort</span><span class="params">(T[] a, <span class="keyword">int</span> lo, <span class="keyword">int</span> hi, Comparator&lt;? <span class="keyword">super</span> T&gt; c,</span></span>
+<span class="function"><span class="params">                        T[] work, <span class="keyword">int</span> workBase, <span class="keyword">int</span> workLen)</span> </span>&#123;
+       <span class="keyword">assert</span> c != <span class="keyword">null</span> &amp;&amp; a != <span class="keyword">null</span> &amp;&amp; lo &gt;= <span class="number">0</span> &amp;&amp; lo &lt;= hi &amp;&amp; hi &lt;= a.length;
+
+       <span class="keyword">int</span> nRemaining  = hi - lo;
+       <span class="keyword">if</span> (nRemaining &lt; <span class="number">2</span>)
+           <span class="keyword">return</span>;  <span class="comment">// Arrays of size 0 and 1 are always sorted</span>
+
+       <span class="comment">// If array is small, do a "mini-TimSort" with no merges</span>
+       <span class="keyword">if</span> (nRemaining &lt; MIN_MERGE) &#123;
+           <span class="keyword">int</span> initRunLen = countRunAndMakeAscending(a, lo, hi, c);
+           binarySort(a, lo, hi, lo + initRunLen, c);
+           <span class="keyword">return</span>;
+       &#125;
+
+       <span class="comment">/**</span>
+<span class="comment">        * March over the array once, left to right, finding natural runs,</span>
+<span class="comment">        * extending short natural runs to minRun elements, and merging runs</span>
+<span class="comment">        * to maintain stack invariant.</span>
+<span class="comment">        */</span>
+       TimSort&lt;T&gt; ts = <span class="keyword">new</span> TimSort&lt;&gt;(a, c, work, workBase, workLen);
+       <span class="keyword">int</span> minRun = minRunLength(nRemaining);
+       <span class="keyword">do</span> &#123;
+           <span class="comment">// Identify next run</span>
+           <span class="keyword">int</span> runLen = countRunAndMakeAscending(a, lo, hi, c);
+
+           <span class="comment">// If run is short, extend to min(minRun, nRemaining)</span>
+           <span class="keyword">if</span> (runLen &lt; minRun) &#123;
+               <span class="keyword">int</span> force = nRemaining &lt;= minRun ? nRemaining : minRun;
+               binarySort(a, lo, lo + force, lo + runLen, c);
+               runLen = force;
+           &#125;
+
+           <span class="comment">// Push run onto pending-run stack, and maybe merge</span>
+           ts.pushRun(lo, runLen);
+           ts.mergeCollapse();
+
+           <span class="comment">// Advance to find next run</span>
+           lo += runLen;
+           nRemaining -= runLen;
+       &#125; <span class="keyword">while</span> (nRemaining != <span class="number">0</span>);
+
+       <span class="comment">// Merge all remaining runs to complete sort</span>
+       <span class="keyword">assert</span> lo == hi;
+       ts.mergeForceCollapse();
+       <span class="keyword">assert</span> ts.stackSize == <span class="number">1</span>;
+   &#125;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_binary_sort_算法">1.2.2. binary sort 算法</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java"><span class="comment">/**</span>
+<span class="comment">     * Sorts the specified portion of the specified array using a binary</span>
+<span class="comment">     * insertion sort.  This is the best method for sorting small numbers</span>
+<span class="comment">     * of elements.  It requires O(n log n) compares, but O(n^2) data</span>
+<span class="comment">     * movement (worst case).</span>
+<span class="comment">     *</span>
+<span class="comment">     * If the initial part of the specified range is already sorted,</span>
+<span class="comment">     * this method can take advantage of it: the method assumes that the</span>
+<span class="comment">     * elements from index &#123;<span class="doctag">@code</span> lo&#125;, inclusive, to &#123;<span class="doctag">@code</span> start&#125;,</span>
+<span class="comment">     * exclusive are already sorted.</span>
+<span class="comment">     *</span>
+<span class="comment">     * <span class="doctag">@param</span> a the array in which a range is to be sorted</span>
+<span class="comment">     * <span class="doctag">@param</span> lo the index of the first element in the range to be sorted</span>
+<span class="comment">     * <span class="doctag">@param</span> hi the index after the last element in the range to be sorted</span>
+<span class="comment">     * <span class="doctag">@param</span> start the index of the first element in the range that is</span>
+<span class="comment">     *        not already known to be sorted (&#123;<span class="doctag">@code</span> lo &lt;= start &lt;= hi&#125;)</span>
+<span class="comment">     * <span class="doctag">@param</span> c comparator to used for the sort</span>
+<span class="comment">     */</span>
+    <span class="meta">@SuppressWarnings</span>(<span class="string">"fallthrough"</span>)
+    <span class="keyword">private</span> <span class="keyword">static</span> &lt;T&gt; <span class="function"><span class="keyword">void</span> <span class="title">binarySort</span><span class="params">(T[] a, <span class="keyword">int</span> lo, <span class="keyword">int</span> hi, <span class="keyword">int</span> start,</span></span>
+<span class="function"><span class="params">                                       Comparator&lt;? <span class="keyword">super</span> T&gt; c)</span> </span>&#123;
+        <span class="keyword">assert</span> lo &lt;= start &amp;&amp; start &lt;= hi;
+        <span class="keyword">if</span> (start == lo)
+            start++;
+        <span class="keyword">for</span> ( ; start &lt; hi; start++) &#123;
+            T pivot = a[start];
+
+            <span class="comment">// Set left (and right) to the index where a[start] (pivot) belongs</span>
+            <span class="keyword">int</span> left = lo;
+            <span class="keyword">int</span> right = start;
+            <span class="keyword">assert</span> left &lt;= right;
+            <span class="comment">/*</span>
+<span class="comment">             * Invariants:</span>
+<span class="comment">             *   pivot &gt;= all in [lo, left).</span>
+<span class="comment">             *   pivot &lt;  all in [right, start).</span>
+<span class="comment">             */</span>
+            <span class="keyword">while</span> (left &lt; right) &#123;
+                <span class="keyword">int</span> mid = (left + right) &gt;&gt;&gt; <span class="number">1</span>;
+                <span class="keyword">if</span> (c.compare(pivot, a[mid]) &lt; <span class="number">0</span>)
+                    right = mid;
+                <span class="keyword">else</span>
+                    left = mid + <span class="number">1</span>;
+            &#125;
+            <span class="keyword">assert</span> left == right;
+
+            <span class="comment">/*</span>
+<span class="comment">             * The invariants still hold: pivot &gt;= all in [lo, left) and</span>
+<span class="comment">             * pivot &lt; all in [left, start), so pivot belongs at left.  Note</span>
+<span class="comment">             * that if there are elements equal to pivot, left points to the</span>
+<span class="comment">             * first slot after them -- that's why this sort is stable.</span>
+<span class="comment">             * Slide elements over to make room for pivot.</span>
+<span class="comment">             */</span>
+            <span class="keyword">int</span> n = start - left;  <span class="comment">// The number of elements to move</span>
+            <span class="comment">// Switch is just an optimization for arraycopy in default case</span>
+            <span class="keyword">switch</span> (n) &#123;
+                <span class="keyword">case</span> <span class="number">2</span>:  a[left + <span class="number">2</span>] = a[left + <span class="number">1</span>];
+                <span class="keyword">case</span> <span class="number">1</span>:  a[left + <span class="number">1</span>] = a[left];
+                         <span class="keyword">break</span>;
+                <span class="keyword">default</span>: System.arraycopy(a, left, a, left + <span class="number">1</span>, n);
+            &#125;
+            a[left] = pivot;
+        &#125;
+    &#125;</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/morrisQiao">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = ""
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+
+
+
+
+</html>
