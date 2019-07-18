@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content>
+    <meta name="keyword" content="MQ">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        Linux远程重装踩坑经历 - MQ&#39;s Logbook
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> The faintest ink is better than the best memory. </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.png" />
+        </div>
+        <div class="name">
+            <i>MQ</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#_ssh远程重装踩坑经历"><span class="toc-text">1. ssh远程重装踩坑经历</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#_重装前信息采集"><span class="toc-text">1.1. 重装前信息采集</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#_引导构建"><span class="toc-text">1.2. 引导构建</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#_修改grub配置"><span class="toc-text">1.2.1. 修改grub配置</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#_reboot命令重启主机"><span class="toc-text">1.3. reboot命令重启主机</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#_失败原因总结"><span class="toc-text">1.4. 失败原因总结</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#_解决方案"><span class="toc-text">1.4.1. 解决方案</span></a></li></ol></li></ol></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> The faintest ink is better than the best memory. </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        Linux远程重装踩坑经历
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2018-11-30 21:39:19</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#Linux" title="Linux">Linux</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#debian" title="debian">debian</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content no-indent">
+        <div class="sect1">
+<h2 id="_ssh远程重装踩坑经历">1. ssh远程重装踩坑经历</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>之前在一台闲置笔记本上安装了 <strong>32位</strong> 的 <strong>debian</strong> 系统，因32位系统无法安装 <strong>docker</strong> ，现在需要将原有系统提升为64位操作系统。</p>
+</div>
+<div class="paragraph">
+<p>因为可以 <strong>ssh</strong> 连接到主机，同时主机上没有重要数据，决定做一次远程ssh重装系统的测试。</p>
+</div>
+<div class="sect2">
+<h3 id="_重装前信息采集">1.1. 重装前信息采集</h3>
+<div class="listingblock">
+<div class="title">获取目标主机ip地址</div>
+<div class="content">
+<pre class="highlight"><code class="language-perl" data-lang="perl">ssh <span class="keyword">my</span>@debian</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>因为目标主机没有 <strong>ifconfig</strong> 的包，这里需要使用 <strong>ip addr</strong> 来获取ip ：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-perl" data-lang="perl"><span class="keyword">my</span>@debian:~$ ip addr show</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>回显地址</strong> 为 ：  192.168.1.16</p>
+</div>
+<div class="paragraph">
+<div class="title">查看当前系统相关信息</div>
+<p>版本信息 ：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-perl" data-lang="perl"><span class="keyword">my</span>@debian:~$ getconf LONG_BIT</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>回显</strong> 为 ： <strong>32</strong></p>
+</div>
+<div class="paragraph">
+<p><strong>操作系统信息</strong> ：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-perl" data-lang="perl">cat /etc/os-release</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>回显信息</strong> ：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-perl" data-lang="perl">PRETTY_NAME=<span class="string">"Debian GNU/Linux 9 (stretch)"</span>
+NAME=<span class="string">"Debian GNU/Linux"</span>
+VERSION_ID=<span class="string">"9"</span>
+VERSION=<span class="string">"9 (stretch)"</span>
+ID=debian
+HOME_URL=<span class="string">"https://www.debian.org/"</span>
+SUPPORT_URL=<span class="string">"https://www.debian.org/support"</span>
+BUG_REPORT_URL=<span class="string">"https://bugs.debian.org/"</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_引导构建">1.2. 引导构建</h3>
+<div class="listingblock">
+<div class="title">在 <strong>boot</strong> 文件夹下创建一个 <strong>newinstall</strong> 文件夹 ：</div>
+<div class="content">
+<pre class="highlight"><code class="language-perl" data-lang="perl">cd /boot/
+<span class="keyword">mkdir</span> newinstall
+cd newinstall</code></pre>
+</div>
+</div>
+<div class="ulist">
+<div class="title">使用wget下载 <strong>initrd.gz</strong> 和 <strong>linux</strong> 这两个文件到新建的 <strong>newinstall</strong> 文件夹</div>
+<ul>
+<li>
+<p>netboot/debian-installer/amd64/initrd.gz</p>
+</li>
+<li>
+<p>netboot/debian-installer/amd64/linux</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">下载过程 ：</div>
+<div class="content">
+<pre class="highlight"><code class="language-perl" data-lang="perl">wget http:<span class="regexp">//ftp</span>.debian.org/debian/dists/stable/main/installer-amd64/current/images/netboot/debian-installer/amd64/linux
+
+wget http:<span class="regexp">//ftp</span>.debian.org/debian/dists/stable/main/installer-amd64/current/images/netboot/debian-installer/amd64/initrd.gz</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">将 <strong>linux</strong> 文件改名为  <strong>vmlinuz</strong></div>
+<div class="content">
+<pre class="highlight"><code class="language-perl" data-lang="perl">mv linux vmlinuz</code></pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_修改grub配置">1.2.1. 修改grub配置</h4>
+<div class="paragraph">
+<p>以便在下次系统启动时直接加载之前下载的两个文件</p>
+</div>
+<div class="paragraph">
+<p><strong>grub2</strong> 相比 <strong>grub</strong> 在配置方面有了很大的改变，不能直接修改grub启动文件， 这里需要先修改 <strong>grub模版</strong> 文件，然后通过 <strong>update-grub</strong> 命令来生成 <strong>grub 启动配置文件</strong>。</p>
+</div>
+<div class="listingblock">
+<div class="title">修改40_custom文件 ：</div>
+<div class="content">
+<pre class="highlight"><code class="language-perl" data-lang="perl">vi /etc/grub.d/<span class="number">40_</span>custom</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>加入新的入口</strong> ：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-perl" data-lang="perl">menuentry <span class="string">'New Install'</span> &#123;
+  insmod part_msdos
+  insmod ext2
+  set root=<span class="string">'(hd0,msdos1)'</span>
+  linux /boot/newinstall/vmlinuz
+  initrd /boot/newinstall/initrd.gz
+&#125;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>设置 *'New Install'</strong> 为grub默认入口*</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-perl" data-lang="perl">grub-set-default <span class="string">'New Install'</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">修改 <strong>grub配置文件</strong> ：</div>
+<div class="content">
+<pre class="highlight"><code class="language-perl" data-lang="perl">vi /etc/default/grub</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>。更新一下内容</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-perl" data-lang="perl">GRUB_DEFAULT=saved
+GRUB_SAVEDEFAULT=true
+GRUB_TERMINAL=console</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>使用命令更新生成grub启动文件 ：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-perl" data-lang="perl">update-grub</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_reboot命令重启主机">1.3. reboot命令重启主机</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-perl" data-lang="perl">reboot</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>重启之后我们失去了与主机的ssh链接，物理主机直接进入了我们设定的 *new install* 入口，开始加载安装进程。</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_失败原因总结">1.4. 失败原因总结</h3>
+<div class="paragraph">
+<p>失败原因很简单，之前下载的 <strong>initrd.gz</strong> 和 <strong>linux</strong> 两个文件，可以进行64位debian网络安装引导，但是他们无法维持之前的ssh链接， 以至于在主机重启后，导致ssh链接丢失。</p>
+</div>
+<div class="sect3">
+<h4 id="_解决方案">1.4.1. 解决方案</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>配置vnc远程链接信息 ： 在grub配置中添加vnc信息，这样系统重启后可以通过vnc远程链接完成远程安装过程。</p>
+</li>
+<li>
+<p>使用debian-installer 解决方案</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/morrisQiao">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = ""
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+
+
+
+
+</html>

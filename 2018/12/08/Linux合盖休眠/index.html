@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content>
+    <meta name="keyword" content="MQ">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        Linux合盖休眠 - MQ&#39;s Logbook
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> The faintest ink is better than the best memory. </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.png" />
+        </div>
+        <div class="name">
+            <i>MQ</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#_取消合盖休眠"><span class="toc-text">1. 取消合盖休眠</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#_编辑_logind_conf_文件"><span class="toc-text">1.1. 编辑 logind.conf 文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#_保存修改"><span class="toc-text">1.2. 保存修改</span></a></li></ol></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> The faintest ink is better than the best memory. </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        Linux合盖休眠
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2018-12-08 21:08:21</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#Linux" title="Linux">Linux</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#debian" title="debian">debian</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content no-indent">
+        <div class="sect1">
+<h2 id="_取消合盖休眠">1. 取消合盖休眠</h2>
+<div class="sectionbody">
+<div class="literalblock">
+<div class="content">
+<pre>手边一台退役闲置笔记本，安装了 debian 后准备合盖放置在角落通过ssh链接作为远程主机使用。
+
+因笔记本具有合盖自动休眠的特性，这里需要修改一下系统设置来取消合盖休眠。
+
+我们可以ssh到主机上做这个修改，也可以直接在物理主机上做相应的操作， 操作需要用户具有root权限。</pre>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_编辑_logind_conf_文件">1.1. 编辑 logind.conf 文件</h3>
+<div class="paragraph">
+<p>这里可以使用 <strong>vi</strong> 编辑器，当然也可以使用 <strong>nano</strong> 或者其他安装了的文本编辑器。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-perl" data-lang="perl">sudo vi /etc/systemd/logind.conf</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>修改文件中下面这行</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-perl" data-lang="perl"><span class="comment">#HandleLidSwitch=suspend</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>去掉行前注释，值改为忽略ignore</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-perl" data-lang="perl">HandleLidSwitch=ignore</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_保存修改">1.2. 保存修改</h3>
+<div class="paragraph">
+<p><strong>重启主机</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-perl" data-lang="perl">sudo reboot</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><span class="red">现在可以把笔记本合上盖作为远程ssh主机使用了</span></p>
+</div>
+</div>
+</div>
+</div>
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/morrisQiao">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = ""
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+
+
+
+
+</html>
