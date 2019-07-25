@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content>
+    <meta name="keyword" content="MQ">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        Maven项目实战Sonar - MQ&#39;s Logbook
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> The faintest ink is better than the best memory. </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.png" />
+        </div>
+        <div class="name">
+            <i>MQ</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#_sonar安装配置"><span class="toc-text">1. Sonar安装配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#_maven_应用配置"><span class="toc-text">2. Maven 应用配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#_maven_多模块项目配置"><span class="toc-text">3. Maven 多模块项目配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#_运行sonar质量检测"><span class="toc-text">4. 运行sonar质量检测</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#_跳过sonar测试"><span class="toc-text">5. 跳过Sonar测试</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> The faintest ink is better than the best memory. </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        Maven项目实战Sonar
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2019-07-25 16:20:43</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#Java" title="Java">Java</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#Maven" title="Maven">Maven</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#Sonar" title="Sonar">Sonar</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#DevOps" title="DevOps">DevOps</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content no-indent">
+        <div class="sect1">
+<h2 id="_sonar安装配置">1. Sonar安装配置</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Sonar的安装可以在本地安装， 也可以在服务器端安装， 当然可以用比较流行的docker容器安装都可以。</p>
+</div>
+<div class="paragraph">
+<p>不详细介绍安装过程了，有需要直接参考官方安装文档 ：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://docs.sonarqube.org/latest/setup/get-started-2-minutes/" target="_blank" rel="noopener">安装演示版本</a></p>
+</li>
+<li>
+<p><a href="https://docs.sonarqube.org/latest/setup/install-server/" target="_blank" rel="noopener">安装生产版本</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_maven_应用配置">2. Maven 应用配置</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>通常我们用Jenkins来做持续交付，这样可以通过pipeline管道来进行sonar扫描自动化。</p>
+</div>
+<div class="paragraph">
+<p>当然我们可以在开发机上通过执行maven命令行来让sonar对我们的项目代码进行质量扫描。</p>
+</div>
+<div class="paragraph">
+<p>不管我们以何种方式来引发Sonar对我们代码的扫描，我们都需要对相应机器的maven进行sonar的设置，否则maven不知道该怎么处理sonar扫描命令。</p>
+</div>
+<div class="paragraph">
+<p>通过修改setting.xml文件修改来完成sonar相关设置，这个文件通常位于 <strong class="red">$MAVEN_HOME/conf</strong> 或者 <strong class="red">~/.m2</strong> 文件夹下。</p>
+</div>
+<div class="paragraph">
+<p>加入以下配置信息：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-xml" data-lang="xml"><span class="tag">&lt;<span class="name">settings</span>&gt;</span>
+    <span class="tag">&lt;<span class="name">pluginGroups</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">pluginGroup</span>&gt;</span>org.sonarsource.scanner.maven<span class="tag">&lt;/<span class="name">pluginGroup</span>&gt;</span>
+    <span class="tag">&lt;/<span class="name">pluginGroups</span>&gt;</span>
+    <span class="tag">&lt;<span class="name">profiles</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">profile</span>&gt;</span>
+            <span class="tag">&lt;<span class="name">id</span>&gt;</span>sonar<span class="tag">&lt;/<span class="name">id</span>&gt;</span>       (1)
+            <span class="tag">&lt;<span class="name">properties</span>&gt;</span>
+                <span class="tag">&lt;<span class="name">sonar.host.url</span>&gt;</span>
+                  http://myserver:9000     (2)
+                <span class="tag">&lt;/<span class="name">sonar.host.url</span>&gt;</span>
+                <span class="tag">&lt;<span class="name">sonar.jdbc.url</span>&gt;</span>jdbc:postgresql://myserver/SONAR/sonar.jdbc.url<span class="tag">&lt;/<span class="name">sonar.jdbc.url</span>&gt;</span>
+                <span class="tag">&lt;<span class="name">sonar.login</span>&gt;</span>jenkins<span class="tag">&lt;/<span class="name">sonar.login</span>&gt;</span>          (3)
+                <span class="tag">&lt;<span class="name">sonar.password</span>&gt;</span>jenkinstest<span class="tag">&lt;/<span class="name">sonar.password</span>&gt;</span>
+            <span class="tag">&lt;/<span class="name">properties</span>&gt;</span>
+        <span class="tag">&lt;/<span class="name">profile</span>&gt;</span>
+     <span class="tag">&lt;/<span class="name">profiles</span>&gt;</span>
+<span class="tag">&lt;/<span class="name">settings</span>&gt;</span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<ol>
+<li>
+<p>maven 对应运行命令的profil，这里可以设置成其他名称</p>
+</li>
+<li>
+<p>sonar服务器地址</p>
+</li>
+<li>
+<p>sonar 用户名和密码(sonar安装后自行添加配置)</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>在properties中，我们可以看到很多关于sonar的属性配置，这些配置我们可以在settings.xml这个文件中定义，我们也可以在maven项目父pom.xml中定义。</p>
+</div>
+<div class="paragraph">
+<p>pom.xml中定义参考 ：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-xml" data-lang="xml"><span class="tag">&lt;<span class="name">properties</span>&gt;</span>
+  <span class="tag">&lt;<span class="name">sonar.buildString</span>&gt;</span> [...] <span class="tag">&lt;/<span class="name">sonar.buildString</span>&gt;</span>
+<span class="tag">&lt;/<span class="name">properties</span>&gt;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>其他更多属性内容可以参考 <a href="https://docs.sonarqube.org/latest/analysis/analysis-parameters/" target="_blank" rel="noopener">链接</a></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_maven_多模块项目配置">3. Maven 多模块项目配置</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>假设已经有一个Maven多模块项目，希望使用Sonar对这个多模块项目进行全面扫描，直接修改父项目的pom即可。</p>
+</div>
+<div class="paragraph">
+<p>打开父项目 <strong class="red">pom.xml</strong> 文件(parent pom)， 在build 部分加入以下依赖插件即可。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-xml" data-lang="xml"><span class="tag">&lt;<span class="name">build</span>&gt;</span>
+  <span class="tag">&lt;<span class="name">pluginManagement</span>&gt;</span>
+    <span class="tag">&lt;<span class="name">plugins</span>&gt;</span>
+      <span class="tag">&lt;<span class="name">plugin</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.sonarsource.scanner.maven<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>sonar-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.6.0.1398<span class="tag">&lt;/<span class="name">version</span>&gt;</span>
+      <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span>
+    <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span>
+  <span class="tag">&lt;/<span class="name">pluginManagement</span>&gt;</span>
+<span class="tag">&lt;/<span class="name">build</span>&gt;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>这里版本信息3.6.0.1398可以抽取，然后通过定义maven属性(properties)来代替，方便更新管理。</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_运行sonar质量检测">4. 运行sonar质量检测</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>可以从配置好settings.xml的机器上，直接通过maven命令行来执行sonar检测，当然也可以通过pipeline管道形式来激发这个检测。</p>
+</div>
+<div class="paragraph">
+<p>但是万变不离其宗，都是要从最基本的maven命令开始 ：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-shell" data-lang="shell">mvn clean verify sonar:sonar -P [项目编译测试的profile],[sonar的profile]</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>项目编译测试的profile： 一般maven项目我们会根据不同环境设置不同的profile，来对应不同的项目属性。例如，dev，ci，qa 等。</p>
+</li>
+<li>
+<p>sonar的profile ： 这个profile就是我们在settings.xml中为sonar设置的profile，这里我们这个是sonar。</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>来一个例子，用ci的profile来运行sonar测试 ：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-shell" data-lang="shell">mvn clean verify sonar：sonar -P ci,sonar</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_跳过sonar测试">5. 跳过Sonar测试</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>对于一个多模块的项目，可能有的模块不需要进行sonar测试。 对于不需要的模块， 可以屏蔽它们的sonar测试。</p>
+</div>
+<div class="paragraph">
+<p>通常有两种方法：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>修改模块的pom.xml</p>
+<div class="literalblock">
+<div class="content">
+<pre>在 *properties* 部分中添加  &lt;sonar.skip&gt;true&lt;/sonar.skip&gt;</pre>
+</div>
+</div>
+</li>
+<li>
+<p>修改maven执行命令</p>
+<div class="literalblock">
+<div class="content">
+<pre>[source,shell]
+----
+mvn clean verify sonar:sonar -P [项目编译测试的profile],[sonar的profile] -pl ![module名称]
+----</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>用ci的profile来运行sonar测试，但不希望对 *DAO* 模块进行sonar测试
+[source,shell]
+----
+mvn clean verify sonar：sonar -P ci,sonar -pl !DAO
+----</pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/morrisQiao">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = ""
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+
+
+
+
+</html>
