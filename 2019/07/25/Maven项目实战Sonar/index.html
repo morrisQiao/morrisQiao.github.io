@@ -131,10 +131,10 @@
         
         <span class="attr">标签：/
         
-        <a class="tag" href="/tags/#Java" title="Java">Java</a>
+        <a class="tag" href="/tags/#Maven" title="Maven">Maven</a>
         <span>/</span>
         
-        <a class="tag" href="/tags/#Maven" title="Maven">Maven</a>
+        <a class="tag" href="/tags/#Java" title="Java">Java</a>
         <span>/</span>
         
         <a class="tag" href="/tags/#Sonar" title="Sonar">Sonar</a>
@@ -326,25 +326,21 @@
 </li>
 <li>
 <p>修改maven执行命令</p>
-<div class="literalblock">
-<div class="content">
-<pre>[source,shell]
-----
-mvn clean verify sonar:sonar -P [项目编译测试的profile],[sonar的profile] -pl ![module名称]
-----</pre>
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>用ci的profile来运行sonar测试，但不希望对 *DAO* 模块进行sonar测试
-[source,shell]
-----
-mvn clean verify sonar：sonar -P ci,sonar -pl !DAO
-----</pre>
-</div>
-</div>
 </li>
 </ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-shell" data-lang="shell">mvn clean verify sonar:sonar -P [项目编译测试的profile],[sonar的profile] -pl ![module名称]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>用ci的profile来运行sonar测试，但不希望对 <strong>DAO</strong> 模块进行sonar测试</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-shell" data-lang="shell">mvn clean verify sonar：sonar -P ci,sonar -pl !DAO</code></pre>
+</div>
 </div>
 </div>
 </div>
