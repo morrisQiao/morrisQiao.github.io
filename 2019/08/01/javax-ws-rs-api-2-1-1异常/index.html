@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="raR8OsZwkvlwxelF7epk-rVKt46eFofO0gPElQYBKyA">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content>
+    <meta name="keyword" content="MQ">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        javax.ws.rs-api-2.1.1异常 - MQ&#39;s Logbook
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-144853799-1"></script>
+    <script>
+       window.dataLayer = window.dataLayer || [];
+           function gtag(){dataLayer.push(arguments);}
+       gtag('js', new Date());
+
+       gtag('config', 'UA-144853799-1');
+    </script>
+
+
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> The faintest ink is better than the best memory. </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.png" />
+        </div>
+        <div class="name">
+            <i>MQ</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#_tomcat_日志异常"><span class="toc-text">1. Tomcat 日志异常</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#_java_8"><span class="toc-text">1.1. JAVA 8</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#_java_9"><span class="toc-text">1.2. JAVA 9</span></a></li></ol></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> The faintest ink is better than the best memory. </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        javax.ws.rs-api-2.1.1异常
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2019-08-01 21:14:00</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#Java" title="Java">Java</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content no-indent">
+        <div class="sect1">
+<h2 id="_tomcat_日志异常">1. Tomcat 日志异常</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Tomcat 启动过程中，在 catalina.out 文件中发现了异常信息 :</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>Jul 10,2019 9:50:08 AM org.apache.catalina.startup.ContextConfig processAnnotationsJar
+SERVRE : Uable to process Jar entry [module-info.class] from Jar
+[jar:file:...../WEB-INF/lib/javax.ws.rs-api-2.1.1.jar!/] for annotations
+org.apache.tomcat.util.bcel.classfile.ClassFormatException: Invalid byte tag in constant pool:19
+    at org.apache.tomcat.util.bcel.classfile.Constant.readConstant(Constant.java:131)
+    at org.apache.tomcat.util.bcel.classfile.ConstantPool.&lt;init&gt;(ConstantPool.java:60)
+    at org.apache.tomcat.util.bcel.classfile.ClassParser.readConstantPool(ClassParser.java:209)
+    at org.apache.tomcat.util.bcel.classfile.ClassParser.parse(ClassParser.java:119)
+    at org.apache.catalina.startup.ContextConfig.processAnnotationsStream(ContextConfig.java:2049)
+    at org.apache.catalina.startup.ContextConfig.processAnnotationsJar(ContextConfig.java:1931)
+    at org.apache.catalina.startup.ContextConfig.processAnnotationsUrl(ContextConfig.java:1899)
+    at org.apache.catalina.startup.ContextConfig.processAnnotations(ContextConfig.java:1885)
+    at org.apache.catalina.startup.ContextConfig.webConfig(ContextConfig.java:1281)
+    at org.apache.catalina.startup.ContextConfig.configureStart(ContextConfig.java:855)
+    at org.apache.catalina.startup.ContextConfig.lifecycleEvent(ContextConfig.java:346)
+    at org.apache.catalina.util.LifecycleSupport.fireLifecycleEvent(LifecycleSupport.java:119)
+    at org.apache.catalina.util.LifecycleBase.fireLifecycleEvent(LifecycleBase.java:90)
+    at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5172)
+    at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:150)
+    at org.apache.catalina.core.ContainerBase.addChildInternal(ContainerBase.java:899)
+    at org.apache.catalina.core.ContainerBase.addChild(ContainerBase.java:875)
+    at org.apache.catalina.core.StandardHost.addChild(StandardHost.java:618)
+    at org.apache.catalina.startup.HostConfig.deployDirectory(HostConfig.java:1100)
+    at org.apache.catalina.startup.HostConfig$DeployDirectory.run(HostConfig.java:1618)
+    at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+    at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+    at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+    at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+    at java.lang.Thread.run(Thread.java:745)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>这里错误的原因是 <strong class="red">constant pool tag 19</strong> 不存在, 为了更好的理解问题的根源，这里最好看一下 <strong>Java Virtual Machine Specification</strong></p>
+</div>
+<div class="sect2">
+<h3 id="_java_8">1.1. JAVA 8</h3>
+<div class="paragraph">
+<p><a href="https://docs.oracle.com/javase/specs/jvms/se8/html/jvms-4.html#jvms-4.4" target="_blank" rel="noopener">参考一下JAVA SE8 的jvm规范</a></p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 1. Constant pool tags</caption>
+<colgroup>
+<col style="width: 88.8888%;">
+<col style="width: 11.1112%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Constant Type</th>
+<th class="tableblock halign-left valign-top">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CONSTANT_Class</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">7</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CONSTANT_Fieldref</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">9</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CONSTANT_Methodref</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">10</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CONSTANT_InterfaceMethodref</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">11</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CONSTANT_String</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">8</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CONSTANT_Integer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CONSTANT_Float</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CONSTANT_Long</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">5</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CONSTANT_Double</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">6</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CONSTANT_NameAndType</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">12</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CONSTANT_Utf8</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CONSTANT_MethodHandle</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">15</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CONSTANT_MethodType</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">16</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CONSTANT_InvokeDynamic</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">18</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_java_9">1.2. JAVA 9</h3>
+<div class="paragraph">
+<p><a href="https://docs.oracle.com/javase/specs/jvms/se9/html/jvms-4.html" target="_blank" rel="noopener">参考一下JAVA SE9 的jvm规范</a></p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 2. Constant pool tags</caption>
+<colgroup>
+<col style="width: 72.7272%;">
+<col style="width: 9.0909%;">
+<col style="width: 9.0909%;">
+<col style="width: 9.091%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Constant Type</th>
+<th class="tableblock halign-left valign-top">Value</th>
+<th class="tableblock halign-left valign-top">class file</th>
+<th class="tableblock halign-left valign-top">Java SE</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CONSTANT_Class</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">7</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">45.3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.0.2</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CONSTANT_Fieldref</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">9</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">45.3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.0.2</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CONSTANT_Methodref</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">10</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">45.3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.0.2</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CONSTANT_InterfaceMethodref</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">11</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">45.3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.0.2</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CONSTANT_String</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">8</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">45.3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.0.2</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CONSTANT_Integer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">45.3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.0.2</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CONSTANT_Float</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">45.3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.0.2</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CONSTANT_Long</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">5</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">45.3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.0.2</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CONSTANT_Double</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">6</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">45.3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.0.2</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CONSTANT_NameAndType</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">12</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">45.3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.0.2</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CONSTANT_Utf8</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">45.3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.0.2</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CONSTANT_MethodHandle</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">15</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">51.0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">7</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CONSTANT_MethodType</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">16</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">51.0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">7</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CONSTANT_InvokeDynamic</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">18</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">51.0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">7</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CONSTANT_Module</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">19</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">53.0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">9</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CONSTANT_Package</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">20</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">53.0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">9</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>因当前运行环境是 JAVA 8 + TOMCAT 8， 但是javax.ws.rs-api 的 <strong class="red">2.1.1</strong> 是指向java 9的， 在不升级JDK还有Tomcat的情况下，这里只能选择降级， 把版本降到 <strong class="red">2.1</strong> 版本。</p>
+</div>
+<div class="paragraph">
+<p>降级到2.1版本后，重新部署重启tomcat，之前异常消失，问题解决了。</p>
+</div>
+</div>
+</div>
+</div>
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/morrisQiao">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+    </ul>
+    
+    <p>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = ""
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+
+
+
+
+</html>
