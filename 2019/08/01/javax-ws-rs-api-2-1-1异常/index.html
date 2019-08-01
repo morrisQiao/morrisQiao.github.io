@@ -367,10 +367,10 @@ org.apache.tomcat.util.bcel.classfile.ClassFormatException: Invalid byte tag in 
 <td class="tableblock halign-left valign-top"><p class="tableblock">7</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">CONSTANT_Module</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">19</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong class="red">CONSTANT_Module</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong class="red">19</strong></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">53.0</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">9</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong class="red">9</strong></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">CONSTANT_Package</p></td>
@@ -381,7 +381,7 @@ org.apache.tomcat.util.bcel.classfile.ClassFormatException: Invalid byte tag in 
 </tbody>
 </table>
 <div class="paragraph">
-<p>因当前运行环境是 JAVA 8 + TOMCAT 8， 但是javax.ws.rs-api 的 <strong class="red">2.1.1</strong> 是指向java 9的， 在不升级JDK还有Tomcat的情况下，这里只能选择降级， 把版本降到 <strong class="red">2.1</strong> 版本。</p>
+<p>因当前运行环境是 JAVA 8 + TOMCAT 8， 但是javax.ws.rs-api <strong class="red">2.1.1</strong> 版本所需的 <strong>tag pool</strong> 是指向 <strong class="red">java 9</strong> 的， 在不升级JDK还有Tomcat的情况下，这里只能选择降级， 把版本降到 <strong class="red">2.1</strong> 版本。</p>
 </div>
 <div class="paragraph">
 <p>降级到2.1版本后，重新部署重启tomcat，之前异常消失，问题解决了。</p>
