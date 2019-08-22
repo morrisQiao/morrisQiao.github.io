@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="raR8OsZwkvlwxelF7epk-rVKt46eFofO0gPElQYBKyA">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content>
+    <meta name="keyword" content="MQ">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        Eloquence数据库-2(实用操作篇) - MQ&#39;s Logbook
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-144853799-1"></script>
+    <script>
+       window.dataLayer = window.dataLayer || [];
+           function gtag(){dataLayer.push(arguments);}
+       gtag('js', new Date());
+
+       gtag('config', 'UA-144853799-1');
+    </script>
+
+
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> The faintest ink is better than the best memory. </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.png" />
+        </div>
+        <div class="name">
+            <i>MQ</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#_安装客户端"><span class="toc-text">1. 安装客户端</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#_数据查询_命令行模式"><span class="toc-text">2. 数据查询（命令行模式）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#_服务器属性设置"><span class="toc-text">2.1. 服务器属性设置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#_数据查询部分"><span class="toc-text">2.2. 数据查询部分</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#_简单查询"><span class="toc-text">2.2.1. 简单查询</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#_模糊查询"><span class="toc-text">2.2.2. 模糊查询</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#_数据导出_命令行模式"><span class="toc-text">3. 数据导出 （命令行模式）</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> The faintest ink is better than the best memory. </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        Eloquence数据库-2(实用操作篇)
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2018-08-22 21:24:48</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#Database" title="Database">Database</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content no-indent">
+        <div class="sect1">
+<h2 id="_安装客户端">1. 安装客户端</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>下载最新Eloquence B.08.20 版本，安装客户端</p>
+</div>
+<div class="paragraph">
+<p><a href="https://eloquence.marxmeier.com/download/" class="bare" target="_blank" rel="noopener">https://eloquence.marxmeier.com/download/</a></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_数据查询_命令行模式">2. 数据查询（命令行模式）</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_服务器属性设置">2.1. 服务器属性设置</h3>
+<div class="listingblock">
+<div class="title">在windows下 打开 cmd ：</div>
+<div class="content">
+<pre class="highlight"><code class="language-shell" data-lang="shell">set eq_dbserver = 服务器ip地址：端口</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><span class="red">例子</span> ：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-perl" data-lang="perl">set eq_dbserver = <span class="number">192.168</span>.<span class="number">1.1</span> : <span class="number">3390</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">选择数据库名</div>
+<div class="content">
+<pre class="highlight"><code class="language-perl" data-lang="perl">b = 数据库名</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><span class="red">例子</span> ：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-perl" data-lang="perl">b = Service</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">授权部分</div>
+<div class="content">
+<pre class="highlight"><code class="language-perl" data-lang="perl"><span class="string">PASSWORD =&gt;</span> 输入数据库密码</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><span class="red">例子</span> ：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-perl" data-lang="perl"><span class="string">PASSWORD =&gt;</span>  password</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">选择模式</div>
+<div class="content">
+<pre class="highlight"><code class="language-perl" data-lang="perl"><span class="string">MODE =&gt;</span> 打开模式</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><span class="red">例子</span> ：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-perl" data-lang="perl"><span class="string">MODE =&gt;</span> <span class="number">1</span> （只读模式）</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_数据查询部分">2.2. 数据查询部分</h3>
+<div class="sect3">
+<h4 id="_简单查询">2.2.1. 简单查询</h4>
+<div class="listingblock">
+<div class="title">输入要查询的表名</div>
+<div class="content">
+<pre class="highlight"><code class="language-perl" data-lang="perl"><span class="keyword">s</span> = 表名</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><span class="red">例子</span> ：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-perl" data-lang="perl"><span class="keyword">s</span> = PARAM</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">构建查询语句</div>
+<div class="content">
+<pre class="highlight"><code class="language-perl" data-lang="perl">f 表单列名 = 要查询的数值</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><span class="red">例子</span> ：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-perl" data-lang="perl">f idParam = <span class="number">1235</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_模糊查询">2.2.2. 模糊查询</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-perl" data-lang="perl">f idParam = @</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">显示结果</div>
+<div class="content">
+<pre class="highlight"><code class="language-perl" data-lang="perl">r all
+[source,perl]</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_数据导出_命令行模式">3. 数据导出 （命令行模式）</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="title">在windows下 打开 cmd ：</div>
+<div class="content">
+<pre class="highlight"><code class="language-perl" data-lang="perl">set eq_dbserver = 服务器ip地址：端口</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><span class="red">例子</span> ：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-perl" data-lang="perl">set eq_dbserver = <span class="number">192.168</span>.<span class="number">1.1</span> : <span class="number">3390</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<div class="title">使用 Eloquence 内置 dbexport 工具</div>
+<p><span class="red">dbexport 简介</span></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-perl" data-lang="perl">PS C:\&gt; dbexport
+
+ELOQUENCE DBEXPORT (C) Copyright <span class="number">2013</span> Marxmeier Software AG (B.08.<span class="number">20</span>)
+usage: dbexport [options] database [set ...]
+options:
+ -help   - show usage (this list)
+ -u user - set user name
+ -p pswd - set password
+ -o path - set output directory (<span class="keyword">not</span> single file)
+ -v      - verbose output
+ -c      - chained export
+ -a      - export automatic data sets
+ -r      - create restructure information
+ -<span class="keyword">s</span> file - output into single file, <span class="string">'-'</span> = stdout
+ -f sep  - field separator, default is <span class="string">','</span>
+ -z cset - set export code set (roman8, iso88591)
+ -w wdth - specify dset id width (default <span class="number">3</span>)
+ -d flgs - debug flags
+ -<span class="keyword">m</span> mode - <span class="keyword">open</span> database in specified mode
+ -<span class="keyword">x</span>      - exclude specified data sets</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">命令使用</div>
+<div class="content">
+<pre class="highlight"><code class="language-perl" data-lang="perl">set eq_dbserver = <span class="number">192.168</span>.<span class="number">1.1</span> : <span class="number">3390</span>
+
+dbexport -r 数据库名称  表单名称</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><span class="red">例子</span>：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-perl" data-lang="perl">dbexport -r Service PARAM</code></pre>
+</div>
+</div>
+</div>
+</div>
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/morrisQiao">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+    </ul>
+    
+    <p>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = ""
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+
+
+
+
+</html>

@@ -11,7 +11,7 @@
 
     <title>
         
-        Postgresql连接异常 - MQ&#39;s Logbook
+        Eloquence数据库-1 - MQ&#39;s Logbook
         
     </title>
 
@@ -92,7 +92,7 @@
     </div>
     
         <div id="toc" class="toc-article">
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#_常见情况"><span class="toc-text">1. 常见情况</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#_当前情况"><span class="toc-text">2. 当前情况</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#_介绍"><span class="toc-text">1. 介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#_hp3000_应用"><span class="toc-text">2. HP3000 应用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#_版本"><span class="toc-text">2.1. 版本</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#_总结"><span class="toc-text">3. 总结</span></a></li></ol>
 </div>
     
 </div>
@@ -123,21 +123,15 @@
 
 <div class="post-container">
     <div class="post-title">
-        Postgresql连接异常
+        Eloquence数据库-1
     </div>
 
     <div class="post-meta">
-        <span class="attr">发布于：<span>2019-07-29 18:22:28</span></span>
+        <span class="attr">发布于：<span>2018-08-22 20:56:08</span></span>
         
         <span class="attr">标签：/
         
         <a class="tag" href="/tags/#Database" title="Database">Database</a>
-        <span>/</span>
-        
-        <a class="tag" href="/tags/#Java" title="Java">Java</a>
-        <span>/</span>
-        
-        <a class="tag" href="/tags/#Postgresql" title="Postgresql">Postgresql</a>
         <span>/</span>
         
         
@@ -147,61 +141,63 @@
 </span>
     </div>
     <div class="post-content no-indent">
-        <div class="paragraph">
-<p>Java 程序在连接Postgresql数据库时出现了 <strong class="red">超时无法连接</strong> 的 <strong>异常</strong>。</p>
-</div>
-<div class="sect1">
-<h2 id="_常见情况">1. 常见情况</h2>
+        <div class="sect1">
+<h2 id="_介绍">1. 介绍</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>一般来说如果程序无法连接数据库，这时候要检查网络数据流在两台服务器间是否被屏蔽了， 可以使用 <strong>telnet</strong> 命令来检查：</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-shell" data-lang="shell">telnet   [服务器ip地址] [端口]</code></pre>
-</div>
+<p>在当今 <span class="red">关系型</span> 还有 <span class="red">NoSQL</span> 数据库飞速发展的背景下，Eloquence曾经在90年代风靡一时，如今也跌落下神坛。</p>
 </div>
 <div class="paragraph">
-<p>假设数据库地址在 10.29.36.58.16， 端口是 5332</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-shell" data-lang="shell">telnet   10.29.36.58.16 5332</code></pre>
-</div>
+<p>因为工作方面的需要，接触到了这个 <span class="red">古董级别</span> 的数据库。因为越来越少的企业单位个人使用该数据库，反而使得它的相关资料，维护培训变得更加珍贵。</p>
 </div>
 <div class="paragraph">
-<p>如果有回显，证明不是网络数据流的情况</p>
+<p>Eloquence数据库通常被用在商务应用的开发与运行环境中，它提供了一个数据库集成的编程环境，并且经过优化以满足商业应用的高性能需求。</p>
 </div>
 <div class="paragraph">
-<p>这时需要网络管理员修改防火墙数据，将相应端口数据流放行。</p>
+<p>该数据库可以支持多种应用程序架构，应用可覆盖从简单文本终端到图形客户端／服务器端的需求。多并发用户支持，响应从单一用户到数百个用户的并发请求。</p>
+</div>
+<div class="paragraph">
+<p>详情可以查看：</p>
+</div>
+<div class="paragraph">
+<p><a href="https://eloquence.marxmeier.com" class="bare" target="_blank" rel="noopener">https://eloquence.marxmeier.com</a></p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_当前情况">2. 当前情况</h2>
+<h2 id="_hp3000_应用">2. HP3000 应用</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>当前情况不是数据流的问题，从程序日志文件描述中找出了以下代码 ：</p>
+<p>该数据库具有 <span class="red">TurboIMAGE扩展兼容性</span> ，这使得[red]#HP3000#业务应用的迁移变得简单和高效。因数据库提供了高兼容性的内部函数，因此这使得HP3000的数据库迁移变得只有导出和导入那么简单。</p>
 </div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-shell" data-lang="shell">org.postgresql.util.PSQLException: FATAL: no pg_hba.conf entry for host "10.29.36.58.11", user "app_test", database "APP_DB_01"</code></pre>
-</div>
+<div class="sect2">
+<h3 id="_版本">2.1. 版本</h3>
+<div class="paragraph">
+<p>第一个版本发布于1990年，具有数以千计的安装量。</p>
 </div>
 <div class="paragraph">
-<p>这里提到了 <strong>pg_hba.conf</strong> 文件， 显然是访问数据库服务器的ip <strong>10.29.36.58.11</strong> 不在数据库配置文件的 <strong>白名单</strong> 中。</p>
+<p>当前版本 ：B.08.20</p>
 </div>
 <div class="paragraph">
-<p>直接 <strong>ssh</strong> 连接到数据库服务器，找到 <strong>pg_hba.conf</strong> 文件，<strong>为服务器 10.29.36.58.11</strong> 添加 <strong class="red">访问规则</strong> ，然后 <strong>重启postgresql服务</strong> 即可。</p>
+<p>个人版本免费，但是禁止用于商业用途。</p>
 </div>
-<div class="listingblock">
-<div class="content">
-<pre>ssh 10.29.36.58.16
-
-locate pg_hba.conf
-
-vi pg_hba.conf</pre>
+<div class="paragraph">
+<p>[red]#免费版本#支持最多同时两个用户，并且有[red]#50MB#的数据库大小的限制</p>
 </div>
+<div class="paragraph">
+<p>[red]#商业版本#需要付费购买，此数据库虽然没有ORACLE那么强大，但是无限制版仍需支付 12760 美元</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_总结">3. 总结</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>虽然商业版本需要支付昂贵的授权， 但是Eloquence数据库的 <span class="red">可操作性</span> ，<span class="red">稳定性</span> 对得起它的价格。</p>
+</div>
+<div class="paragraph">
+<p>资料相比来说比较匮乏，还有操作指令与其他SQL数据库不同，即使遇到黑客攻击，也很难对数据库进行修改，拖库操作。</p>
 </div>
 </div>
 </div>
