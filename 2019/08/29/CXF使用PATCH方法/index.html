@@ -11,7 +11,7 @@
 
     <title>
         
-        Postgresql连接异常 - MQ&#39;s Logbook
+        CXF使用PATCH方法 - MQ&#39;s Logbook
         
     </title>
 
@@ -92,7 +92,7 @@
     </div>
     
         <div id="toc" class="toc-article">
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#_常见情况"><span class="toc-text">1. 常见情况</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#_当前情况"><span class="toc-text">2. 当前情况</span></a></li></ol>
+    
 </div>
     
 </div>
@@ -123,21 +123,18 @@
 
 <div class="post-container">
     <div class="post-title">
-        Postgresql连接异常
+        CXF使用PATCH方法
     </div>
 
     <div class="post-meta">
-        <span class="attr">发布于：<span>2019-07-29 18:22:28</span></span>
+        <span class="attr">发布于：<span>2019-08-29 08:54:18</span></span>
         
         <span class="attr">标签：/
         
         <a class="tag" href="/tags/#Java" title="Java">Java</a>
         <span>/</span>
         
-        <a class="tag" href="/tags/#Database" title="Database">Database</a>
-        <span>/</span>
-        
-        <a class="tag" href="/tags/#Postgresql" title="Postgresql">Postgresql</a>
+        <a class="tag" href="/tags/#WebService" title="WebService">WebService</a>
         <span>/</span>
         
         
@@ -148,62 +145,31 @@
     </div>
     <div class="post-content no-indent">
         <div class="paragraph">
-<p>Java 程序在连接Postgresql数据库时出现了 <strong class="red">超时无法连接</strong> 的 <strong>异常</strong>。</p>
+<p>作为客户端需要使用CXF的WebClient来调用网络服务api的Patch方法。</p>
 </div>
-<div class="sect1">
-<h2 id="_常见情况">1. 常见情况</h2>
-<div class="sectionbody">
 <div class="paragraph">
-<p>一般来说如果程序无法连接数据库，这时候要检查网络数据流在两台服务器间是否被屏蔽了， 可以使用 <strong>telnet</strong> 命令来检查：</p>
+<p>WebClient类没有将PATCH方法列为常用方法，导致无法直接调用，需要通过以下步骤完成 ：</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-shell" data-lang="shell">telnet   [服务器ip地址] [端口]</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>假设数据库地址在 10.29.36.58.16， 端口是 5332</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-shell" data-lang="shell">telnet   10.29.36.58.16 5332</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>如果有回显，证明不是网络数据流的情况</p>
-</div>
-<div class="paragraph">
-<p>这时需要网络管理员修改防火墙数据，将相应端口数据流放行。</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_当前情况">2. 当前情况</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>当前情况不是数据流的问题，从程序日志文件描述中找出了以下代码 ：</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-shell" data-lang="shell">org.postgresql.util.PSQLException: FATAL: no pg_hba.conf entry for host "10.29.36.58.11", user "app_test", database "APP_DB_01"</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>这里提到了 <strong>pg_hba.conf</strong> 文件， 显然是访问数据库服务器的ip <strong>10.29.36.58.11</strong> 不在数据库配置文件的 <strong>白名单</strong> 中。</p>
-</div>
-<div class="paragraph">
-<p>直接 <strong>ssh</strong> 连接到数据库服务器，找到 <strong>pg_hba.conf</strong> 文件，<strong>为服务器 10.29.36.58.11</strong> 添加 <strong class="red">访问规则</strong> ，然后 <strong>重启postgresql服务</strong> 即可。</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>ssh 10.29.36.58.16
+<pre class="highlight"><code class="language-java" data-lang="java">WebClient client = SERVER.create( webservice path );
+WebClient.getConfig(client).getRequestContext().put(<span class="string">"use.async.http.conduit"</span>,<span class="keyword">true</span>);
 
-locate pg_hba.conf
-
-vi pg_hba.conf</pre>
+Response response = client.invoke(<span class="string">"PATCH"</span>, body object )</code></pre>
 </div>
 </div>
-</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong class="red">SERVER</strong> 是 CxfRestServer</p>
+</li>
+<li>
+<p>webservice path : 网络服务api路径</p>
+</li>
+<li>
+<p>body object ： 替换为需要在body中发送到api的类</p>
+</li>
+</ul>
 </div>
         
         <br />
