@@ -11,7 +11,7 @@
 
     <title>
         
-        Postgresql连接异常 - MQ&#39;s Logbook
+        VSCode常用插件 - MQ&#39;s Logbook
         
     </title>
 
@@ -92,7 +92,7 @@
     </div>
     
         <div id="toc" class="toc-article">
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#_常见情况"><span class="toc-text">1. 常见情况</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#_当前情况"><span class="toc-text">2. 当前情况</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#_arduino"><span class="toc-text">1. Arduino</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#_asciidoc"><span class="toc-text">2. AsciiDoc</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#_beautify"><span class="toc-text">3. beautify</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#_code_runner"><span class="toc-text">4. Code Runner</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#_debugger_for_chrome"><span class="toc-text">5. debugger for Chrome</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#_eslint"><span class="toc-text">6. ESlint</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#_npm_intellisense"><span class="toc-text">7. npm Intellisense</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#_path_intellisense"><span class="toc-text">8. path Intellisense</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#_project_manager"><span class="toc-text">9. Project Manager</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#_typescript_hero"><span class="toc-text">10. TypeScript Hero</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#_vscode_icons"><span class="toc-text">11. vscode-icons</span></a></li></ol>
 </div>
     
 </div>
@@ -123,21 +123,15 @@
 
 <div class="post-container">
     <div class="post-title">
-        Postgresql连接异常
+        VSCode常用插件
     </div>
 
     <div class="post-meta">
-        <span class="attr">发布于：<span>2019-07-29 18:22:28</span></span>
+        <span class="attr">发布于：<span>2019-08-29 22:11:57</span></span>
         
         <span class="attr">标签：/
         
-        <a class="tag" href="/tags/#Database" title="Database">Database</a>
-        <span>/</span>
-        
-        <a class="tag" href="/tags/#Java" title="Java">Java</a>
-        <span>/</span>
-        
-        <a class="tag" href="/tags/#Postgresql" title="Postgresql">Postgresql</a>
+        <a class="tag" href="/tags/#Work" title="Work">Work</a>
         <span>/</span>
         
         
@@ -148,60 +142,99 @@
     </div>
     <div class="post-content no-indent">
         <div class="paragraph">
-<p>Java 程序在连接Postgresql数据库时出现了 <strong class="red">超时无法连接</strong> 的 <strong>异常</strong>。</p>
+<p>最近从 <strong class="red">Atom</strong> 改用 <strong class="blue">VS Code</strong> ， 不得不说VS Code真的很强大，比Atom好用太多。 不论是大型文件的加载，还是操作的流顺度，VS Code 都处理的很好。 同时有各种插件可以免费使用，来方便开发。</p>
+</div>
+<div class="paragraph">
+<p>推荐一些好用的插件 ：</p>
 </div>
 <div class="sect1">
-<h2 id="_常见情况">1. 常见情况</h2>
+<h2 id="_arduino">1. Arduino</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>一般来说如果程序无法连接数据库，这时候要检查网络数据流在两台服务器间是否被屏蔽了， 可以使用 <strong>telnet</strong> 命令来检查：</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-shell" data-lang="shell">telnet   [服务器ip地址] [端口]</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>假设数据库地址在 10.29.36.58.16， 端口是 5332</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-shell" data-lang="shell">telnet   10.29.36.58.16 5332</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>如果有回显，证明不是网络数据流的情况</p>
-</div>
-<div class="paragraph">
-<p>这时需要网络管理员修改防火墙数据，将相应端口数据流放行。</p>
+<p>方便编写查看Arduino程序</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_当前情况">2. 当前情况</h2>
+<h2 id="_asciidoc">2. AsciiDoc</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>当前情况不是数据流的问题，从程序日志文件描述中找出了以下代码 ：</p>
+<p>AsciiDoc 文件编写辅助工具， 可以快速生成文档预览。</p>
 </div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-shell" data-lang="shell">org.postgresql.util.PSQLException: FATAL: no pg_hba.conf entry for host "10.29.36.58.11", user "app_test", database "APP_DB_01"</code></pre>
 </div>
+</div>
+<div class="sect1">
+<h2 id="_beautify">3. beautify</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>代码格式化工具， 用起来稍微有点麻烦，但是效果还不错。</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_code_runner">4. Code Runner</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>在VS Code内运行正在编辑的代码程序，支持多种语言。</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_debugger_for_chrome">5. debugger for Chrome</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>通过设置可实现与chrome联动进行Debug操作， 方便进行前端调试</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_eslint">6. ESlint</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>可用于js代码的错误检测</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_npm_intellisense">7. npm Intellisense</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>自动补全npm模块名称</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_path_intellisense">8. path Intellisense</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>智能路径补全工具</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_project_manager">9. Project Manager</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>项目管理工具， 可实现快速在不同项目间进行切换。</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_typescript_hero">10. TypeScript Hero</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>TypeScript 编程辅助工具</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_vscode_icons">11. vscode-icons</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>根据每个文件的类型，在每个文件名前加上相应图标。</p>
 </div>
 <div class="paragraph">
-<p>这里提到了 <strong>pg_hba.conf</strong> 文件， 显然是访问数据库服务器的ip <strong>10.29.36.58.11</strong> 不在数据库配置文件的 <strong>白名单</strong> 中。</p>
-</div>
-<div class="paragraph">
-<p>直接 <strong>ssh</strong> 连接到数据库服务器，找到 <strong>pg_hba.conf</strong> 文件，<strong>为服务器 10.29.36.58.11</strong> 添加 <strong class="red">访问规则</strong> ，然后 <strong>重启postgresql服务</strong> 即可。</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>ssh 10.29.36.58.16
-
-locate pg_hba.conf
-
-vi pg_hba.conf</pre>
-</div>
+<p>一目了然，迅速同一个文件夹下不同类型的文件。</p>
 </div>
 </div>
 </div>
