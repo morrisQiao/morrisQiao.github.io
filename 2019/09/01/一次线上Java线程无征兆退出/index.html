@@ -11,7 +11,7 @@
 
     <title>
         
-        Postgresql连接异常 - MQ&#39;s Logbook
+        一次线上Java线程无征兆退出 - MQ&#39;s Logbook
         
     </title>
 
@@ -92,7 +92,7 @@
     </div>
     
         <div id="toc" class="toc-article">
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#_常见情况"><span class="toc-text">1. 常见情况</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#_当前情况"><span class="toc-text">2. 当前情况</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#_查找原因"><span class="toc-text">1. 查找原因</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#_验证设想"><span class="toc-text">2. 验证设想</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#_改进修复"><span class="toc-text">3. 改进修复</span></a></li></ol>
 </div>
     
 </div>
@@ -123,21 +123,18 @@
 
 <div class="post-container">
     <div class="post-title">
-        Postgresql连接异常
+        一次线上Java线程无征兆退出
     </div>
 
     <div class="post-meta">
-        <span class="attr">发布于：<span>2019-07-29 18:22:28</span></span>
+        <span class="attr">发布于：<span>2019-09-01 09:25:09</span></span>
         
         <span class="attr">标签：/
         
         <a class="tag" href="/tags/#Java" title="Java">Java</a>
         <span>/</span>
         
-        <a class="tag" href="/tags/#Database" title="Database">Database</a>
-        <span>/</span>
-        
-        <a class="tag" href="/tags/#Postgresql" title="Postgresql">Postgresql</a>
+        <a class="tag" href="/tags/#Work" title="Work">Work</a>
         <span>/</span>
         
         
@@ -148,60 +145,91 @@
     </div>
     <div class="post-content no-indent">
         <div class="paragraph">
-<p>Java 程序在连接Postgresql数据库时出现了 <strong class="red">超时无法连接</strong> 的 <strong>异常</strong>。</p>
+<p>生产环境线上程序部分行为异常，通过程序日志发现一个 <strong class="red">Java线程在执行了一半时就突然挂掉</strong> ，相应业务代码当然也没有执行完成。</p>
+</div>
+<div class="paragraph">
+<p>相应人员没搞明白怎么回事，让我帮忙来看下这个问题 ：</p>
+</div>
+<div class="paragraph">
+<p>比较奇怪的是，线程神奇的在 <strong class="red">LOG文件</strong> 中 <strong class="red">消失</strong> 了 <strong class="red">踪迹</strong>，app是部署在 <strong class="red">tomcat容器</strong> 当中，如果有异常发生应该可以在 <strong class="red">catalina.out</strong> 文件中看到运行异常信息，但是这里也是没有。</p>
 </div>
 <div class="sect1">
-<h2 id="_常见情况">1. 常见情况</h2>
+<h2 id="_查找原因">1. 查找原因</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>一般来说如果程序无法连接数据库，这时候要检查网络数据流在两台服务器间是否被屏蔽了， 可以使用 <strong>telnet</strong> 命令来检查：</p>
+<p>没有发现具体的异常信息，问题原因相对来说比较难以定位。</p>
+</div>
+<div class="paragraph">
+<p>因为对这个程序不熟悉，只能顺着程序日志消失的地方，一层一层的往上捋。</p>
+</div>
+<div class="paragraph">
+<p>这个项目开始的时候很多程序设计还有实现方面都有着方方面面的问题，当然历史遗留问题也不是一天两天能解决的。</p>
+</div>
+<div class="paragraph">
+<p>把程序剥到了 <strong class="red">Web Service</strong> 入口的 <strong class="red">controller</strong>， 通过查看 <strong class="red">git日志</strong> 发现代码开始使用 <strong class="red">ExecutorService</strong> 做异步调用， 现在改用 <strong class="red">CompletableFuture</strong> 了。</p>
 </div>
 <div class="listingblock">
+<div class="title">修改前</div>
 <div class="content">
-<pre class="highlight"><code class="language-shell" data-lang="shell">telnet   [服务器ip地址] [端口]</code></pre>
+<pre class="highlight"><code class="language-java" data-lang="java">ExecutorService executorService = Executors.newSingleThreadExecutor();
+executorService.execute(<span class="keyword">new</span> Runnable() &#123;
+	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;
+		<span class="keyword">try</span> &#123;
+                .....
+
+			&#125; <span class="keyword">catch</span> (OurCustomerException e) &#123;
+				LOGGER.error(<span class="string">"Error .........."</span>);
+			&#125;
+	&#125;
+&#125;);</code></pre>
 </div>
-</div>
-<div class="paragraph">
-<p>假设数据库地址在 10.29.36.58.16， 端口是 5332</p>
 </div>
 <div class="listingblock">
+<div class="title">修改后</div>
 <div class="content">
-<pre class="highlight"><code class="language-shell" data-lang="shell">telnet   10.29.36.58.16 5332</code></pre>
+<pre class="highlight"><code class="language-java" data-lang="java">CompletableFuture.runAsync(() -&gt; &#123;
+	<span class="keyword">try</span> &#123;
+		.....
+
+		&#125; <span class="keyword">catch</span> (OurCustomerException e) &#123;
+		    LOGGER.error(<span class="string">"Error .........."</span>);
+		&#125;
+&#125;);</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>如果有回显，证明不是网络数据流的情况</p>
-</div>
-<div class="paragraph">
-<p>这时需要网络管理员修改防火墙数据，将相应端口数据流放行。</p>
+<p>这里感觉代码修改之后，异常应该是被 <strong class="red">CompletableFuture吞掉</strong> 了， 代码中虽然有try catch 块，但是它只抓取自定义的 <strong class="red">OurCustomerException</strong> ， 其他类型异常它抓取不到。</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_当前情况">2. 当前情况</h2>
+<h2 id="_验证设想">2. 验证设想</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>当前情况不是数据流的问题，从程序日志文件描述中找出了以下代码 ：</p>
+<p>为了验证上一步的假设，直接从git的tag中checkout相应的线上版本，修改以下代码部署到QA环境.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-shell" data-lang="shell">org.postgresql.util.PSQLException: FATAL: no pg_hba.conf entry for host "10.29.36.58.11", user "app_test", database "APP_DB_01"</code></pre>
+<pre class="highlight"><code class="language-java" data-lang="java">CompletableFuture.runAsync(() -&gt; &#123;
+	<span class="keyword">try</span> &#123;
+		     ...
+
+		&#125; <span class="keyword">catch</span> (OurCustomerException e) &#123;
+			LOGGER.error(<span class="string">"Error .........."</span>);
+		&#125;
+&#125;).exceptionally(e -&gt; &#123;LOGGER.error(<span class="string">"methodeName() "</span>, e); <span class="keyword">return</span> <span class="keyword">null</span>;&#125;);</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>这里提到了 <strong>pg_hba.conf</strong> 文件， 显然是访问数据库服务器的ip <strong>10.29.36.58.11</strong> 不在数据库配置文件的 <strong>白名单</strong> 中。</p>
+<p><strong class="red">重新打包war</strong>，部署到 <strong class="red">QA</strong> 环境中，模拟生产环境相应操作，这次在日志中获取到了异常。根据异常信息显示，在CompletableFuture的子线程执行时，程序试图修改一个不可修改的Collection，CompletableFuture结束了业务的执行。</p>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_改进修复">3. 改进修复</h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>直接 <strong>ssh</strong> 连接到数据库服务器，找到 <strong>pg_hba.conf</strong> 文件，<strong>为服务器 10.29.36.58.11</strong> 添加 <strong class="red">访问规则</strong> ，然后 <strong>重启postgresql服务</strong> 即可。</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>ssh 10.29.36.58.16
-
-locate pg_hba.conf
-
-vi pg_hba.conf</pre>
-</div>
+<p>通过JIRA提交BUG给开发组，由开发组进一步跟进。</p>
 </div>
 </div>
 </div>
