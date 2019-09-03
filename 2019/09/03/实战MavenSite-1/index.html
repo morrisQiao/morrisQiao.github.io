@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="raR8OsZwkvlwxelF7epk-rVKt46eFofO0gPElQYBKyA">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content>
+    <meta name="keyword" content="MQ">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        多模块项目MavenSite实战-1 - MQ&#39;s Logbook
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-144853799-1"></script>
+    <script>
+       window.dataLayer = window.dataLayer || [];
+           function gtag(){dataLayer.push(arguments);}
+       gtag('js', new Date());
+
+       gtag('config', 'UA-144853799-1');
+    </script>
+
+
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> The faintest ink is better than the best memory. </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.png" />
+        </div>
+        <div class="name">
+            <i>MQ</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#_引入插件"><span class="toc-text">1. 引入插件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#_添加创建内容"><span class="toc-text">2. 添加创建内容</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#_site文件夹结构构建"><span class="toc-text">2.1. site文件夹结构构建</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#_放置其他资源"><span class="toc-text">2.2. 放置其他资源</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#_修改网站描述文件site_xml"><span class="toc-text">2.3. 修改网站描述文件site.xml</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#_添加一个主题"><span class="toc-text">2.3.1. 添加一个主题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#_添加网站logo"><span class="toc-text">2.3.2. 添加网站logo</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#_添加菜单"><span class="toc-text">2.3.3. 添加菜单</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#_加点颜色"><span class="toc-text">2.3.4. 加点颜色</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#_添加一些页面链接"><span class="toc-text">2.3.5. 添加一些页面链接</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#_添加导航栏"><span class="toc-text">2.3.6. 添加导航栏</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#_添加页眉页脚"><span class="toc-text">2.3.7. 添加页眉页脚</span></a></li></ol></li></ol></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> The faintest ink is better than the best memory. </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        多模块项目MavenSite实战-1
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2019-09-03 21:04:01</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#Java" title="Java">Java</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#Maven" title="Maven">Maven</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#Work" title="Work">Work</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content no-indent">
+        <div class="paragraph">
+<p>在使用 <strong class="red">maven</strong> 做 <strong class="red">依赖管理</strong> 的Java项目中，可使用 <strong class="red">maven site</strong> 插件来生成一个包含项目相关资料信息的静态html+css网站。</p>
+</div>
+<div class="paragraph">
+<p>在这个基本网站的基础上，可通过下方法来做进一步的完善 ：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>使用一些其他的 <strong class="red">maven插件</strong></p>
+</li>
+<li>
+<p>书写一些 <strong class="red">项目文档</strong> ，可以使用当今比较流行的 <strong class="red">Markdown</strong> 还有 <strong class="red">AsciiDoc</strong> 文档格式。</p>
+</li>
+<li>
+<p>画项目相关的一些 <strong class="red">流程图</strong> ，<strong class="red">用例图</strong> ，<strong class="red">类图</strong> ，<strong class="red">交互图</strong>，可以通过 <strong class="red">planuml</strong> 文件实现。</p>
+</li>
+<li>
+<p><strong class="red">外链</strong> 到关联的项目网站</p>
+</li>
+</ul>
+</div>
+<div class="sect1">
+<h2 id="_引入插件">1. 引入插件</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><strong class="red">多模块maven项目</strong> 中直接在父项目的pom文件中引入 <strong class="red">maven site plugin</strong> ，无需在子模块中重复引用。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">&lt;plugin&gt;
+    &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+    &lt;artifactId&gt;maven-site-plugin&lt;/artifactId&gt;
+&lt;/plugin&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>引入插件完毕以后，在当前项目或者说父项目下执行 ：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">mvn site</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>命令执行完会在本地 <strong class="red">/target/site</strong> 文件夹中生成一个项目网站。因为这里什么也没有配置，所以当打开html主页面时，内容会显得无比单调，大概也就只有个项目名称而已。</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_添加创建内容">2. 添加创建内容</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>为网站添加内容需要在 <strong class="red">$&#123;basedir&#125;/src/site</strong> 文件夹下完成，将需要添加的新的文档信息都放到当前项目的src目录下的site文件夹中。</p>
+</div>
+<div class="paragraph">
+<p>不是说直接拖放一些文件或者说文档到这个文件夹中就可以了，当然还是需要遵循一定的规则和做一些相应配置的。</p>
+</div>
+<div class="sect2">
+<h3 id="_site文件夹结构构建">2.1. site文件夹结构构建</h3>
+<div class="paragraph">
+<p>这里对 <strong class="red">官方的例子</strong> 稍微做下改动，由下面这个文件夹结构可以看出，不同类型的文档最好分类到不同文件夹下进行存放。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>+- src/
+   +- site/
+      +- apt/
+      |  +- index.apt
+      |
+      +- asciidoc/
+      |  +- asciidoc.adoc
+      |
+      +- fml/
+      |  +- general.fml
+      |  +- faq.fml
+      |
+      +- markdown/
+      |  +- markup.md
+      |
+      +- plantuml/
+      |  +- plantuml.plantuml
+      +- xdoc/
+      |  +- other.xml
+      |
+      +- xhtml/
+      |  +- xhtml-too.xhtml
+      |
+      +- xhtml5/
+      |  +- xhtml5-content.xhtml5
+      |
+      +- site.xml</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>同时在 <strong class="red">site根文件夹</strong> 下，需要放置一个 <strong class="red">site.xml文件</strong> ，这个文件的作用是用来 <strong class="red">描述项目网站</strong> 的。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_放置其他资源">2.2. 放置其他资源</h3>
+<div class="paragraph">
+<p>对于一些 <strong class="red">css资源</strong> ，还有一些 <strong class="red">图片</strong> ，可以放到 <strong class="red">/site/resources</strong> 文件夹中来 <strong class="red">统一管理</strong> 。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>+- src/
+   +- site/
+      +- resources/
+         +- css/
+         |  +- site.css
+         |
+         +- images/
+            +- pic1.jpg</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_修改网站描述文件site_xml">2.3. 修改网站描述文件site.xml</h3>
+<div class="sect3">
+<h4 id="_添加一个主题">2.3.1. 添加一个主题</h4>
+<div class="paragraph">
+<p>网站title添加 ：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-xml" data-lang="xml"><span class="tag">&lt;<span class="name">project</span> <span class="attr">name</span>=<span class="string">"网站名称或者项目名称"</span>&gt;</span>
+  ...
+<span class="tag">&lt;/<span class="name">project</span>&gt;</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_添加网站logo">2.3.2. 添加网站logo</h4>
+<div class="paragraph">
+<p>在描述文件中，<strong class="red">Banner</strong> 标签可用来管理logo ：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>bannerLeft ： 靠左对齐logo</p>
+</li>
+<li>
+<p>bannerRight ： 靠右对齐logo</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>&lt;project&gt;
+  ...
+  &lt;bannerLeft&gt;
+    &lt;name&gt;项目名称&lt;/name&gt;
+    &lt;src&gt;https://maven.apache.org/images/apache-maven-project-2.png&lt;/src&gt;
+    &lt;href&gt;https://maven.apache.org/&lt;/href&gt;
+  &lt;/bannerLeft&gt;
+
+  &lt;bannerRight&gt;
+    &lt;src&gt;https://maven.apache.org/images/maven-logo-2.gif&lt;/src&gt;
+  &lt;/bannerRight&gt;
+  ...
+&lt;/project&gt;</pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_添加菜单">2.3.3. 添加菜单</h4>
+<div class="listingblock">
+<div class="content">
+<pre>&lt;project&gt;
+  ...
+  &lt;body&gt;
+    &lt;menu ref="parent" /&gt;
+    &lt;menu ref="modules" /&gt;
+    &lt;menu ref="reports" /&gt;
+  &lt;/body&gt;
+  ...
+&lt;/project&gt;</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>在多模块maven项目背景下 ：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>parent ： 显示父项目网站的链接</p>
+</li>
+<li>
+<p>modules ： 显示当前项目下的所有子项目的链接</p>
+</li>
+<li>
+<p>reports ： 显示生成的项目报告的链接</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_加点颜色">2.3.4. 加点颜色</h4>
+<div class="paragraph">
+<p>默认生成的项目网站如果没有自定义css文件，是 <strong class="red">没有渲染</strong> 的。</p>
+</div>
+<div class="paragraph">
+<p>想让网站加点颜色，变得整洁，这里可以给他设置个皮肤 <strong class="red">skin</strong> , 这里推荐使用 <strong class="red">fluido</strong> ， 其他的要么比较单薄，要么比较花哨。</p>
+</div>
+<div class="paragraph">
+<p>当然如果时间充裕，自己也可以编写skin。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-xml" data-lang="xml"><span class="tag">&lt;<span class="name">project</span>&gt;</span>
+  ...
+  <span class="tag">&lt;<span class="name">skin</span>&gt;</span>
+    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.maven.skins<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>
+    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-fluido-skin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span>
+    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.7<span class="tag">&lt;/<span class="name">version</span>&gt;</span>
+  <span class="tag">&lt;/<span class="name">skin</span>&gt;</span>
+  ...
+<span class="tag">&lt;/<span class="name">project</span>&gt;</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_添加一些页面链接">2.3.5. 添加一些页面链接</h4>
+<div class="paragraph">
+<p>这里可以直接 <strong class="red">添加页面超链接</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-xml" data-lang="xml"><span class="tag">&lt;<span class="name">project</span>&gt;</span>
+  ...
+  <span class="tag">&lt;<span class="name">body</span>&gt;</span>
+    ...
+    <span class="tag">&lt;<span class="name">links</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">"Apache"</span> <span class="attr">href</span>=<span class="string">"http://www.apache.org"</span>/&gt;</span>
+        <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">"Maven"</span> <span class="attr">href</span>=<span class="string">"https://maven.apache.org"</span>/&gt;</span>
+    <span class="tag">&lt;/<span class="name">links</span>&gt;</span>
+    ...
+  <span class="tag">&lt;/<span class="name">body</span>&gt;</span>
+  ...
+<span class="tag">&lt;/<span class="name">project</span>&gt;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>当然也可以使用menu标签包裹item标签的方式来让链接信息更加层次化 ：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-xml" data-lang="xml"><span class="tag">&lt;<span class="name">project</span>&gt;</span>
+  ...
+  <span class="tag">&lt;<span class="name">body</span>&gt;</span>
+    ...
+    <span class="tag">&lt;<span class="name">menu</span> <span class="attr">name</span>=<span class="string">“菜单名称”</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">"Apache"</span> <span class="attr">href</span>=<span class="string">"http://www.apache.org"</span>/&gt;</span>
+        <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">"Maven"</span> <span class="attr">href</span>=<span class="string">"https://maven.apache.org"</span>/&gt;</span>
+    <span class="tag">&lt;/<span class="name">menu</span>&gt;</span>
+    ...
+  <span class="tag">&lt;/<span class="name">body</span>&gt;</span>
+  ...
+<span class="tag">&lt;/<span class="name">project</span>&gt;</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_添加导航栏">2.3.6. 添加导航栏</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-xml" data-lang="xml"><span class="tag">&lt;<span class="name">project</span>&gt;</span>
+  ...
+  <span class="tag">&lt;<span class="name">body</span>&gt;</span>
+    ...
+    <span class="tag">&lt;<span class="name">breadcrumbs</span>&gt;</span>
+      <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">"Doxia"</span> <span class="attr">href</span>=<span class="string">"https://maven.apache.org/doxia/index.html"</span>/&gt;</span>
+      <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">"Trunk"</span> <span class="attr">href</span>=<span class="string">"https://maven.apache.org/doxia/doxia/index.html"</span>/&gt;</span>
+    <span class="tag">&lt;/<span class="name">breadcrumbs</span>&gt;</span>
+    ...
+  <span class="tag">&lt;/<span class="name">body</span>&gt;</span>
+  ...
+<span class="tag">&lt;/<span class="name">project</span>&gt;</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_添加页眉页脚">2.3.7. 添加页眉页脚</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-xml" data-lang="xml"><span class="tag">&lt;<span class="name">project</span>&gt;</span>
+  ...
+  <span class="tag">&lt;<span class="name">body</span>&gt;</span>
+    ...
+    <span class="tag">&lt;<span class="name">head</span>&gt;</span>
+      &lt;![CDATA[&lt;script src="http://www.google-analytics.com/urchin.js" type="text/javascript" /&gt;]]&gt;
+    <span class="tag">&lt;/<span class="name">head</span>&gt;</span>
+    ...
+    <span class="tag">&lt;<span class="name">footer</span>&gt;</span>&lt;![CDATA[All rights reserved.]]&gt;<span class="tag">&lt;/<span class="name">footer</span>&gt;</span>
+    ...
+  <span class="tag">&lt;/<span class="name">body</span>&gt;</span>
+  ...
+<span class="tag">&lt;/<span class="name">project</span>&gt;</span></code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/morrisQiao">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+    </ul>
+    
+    <p>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = ""
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+
+
+
+
+</html>
