@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="raR8OsZwkvlwxelF7epk-rVKt46eFofO0gPElQYBKyA">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content>
+    <meta name="keyword" content="MQ">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        多模块项目MavenSite实战-2 - MQ&#39;s Logbook
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-144853799-1"></script>
+    <script>
+       window.dataLayer = window.dataLayer || [];
+           function gtag(){dataLayer.push(arguments);}
+       gtag('js', new Date());
+
+       gtag('config', 'UA-144853799-1');
+    </script>
+
+
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> The faintest ink is better than the best memory. </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.png" />
+        </div>
+        <div class="name">
+            <i>MQ</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#_asciidoc_插件"><span class="toc-text">1. Asciidoc 插件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#_引入插件"><span class="toc-text">1.1. 引入插件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#_运行设定"><span class="toc-text">1.2. 运行设定</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#_个性化配置"><span class="toc-text">1.3. 个性化配置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#_默认配置"><span class="toc-text">1.3.1. 默认配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#_配置例子"><span class="toc-text">1.3.2. 配置例子</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#_swagger插件"><span class="toc-text">2. swagger插件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#_引入插件_2"><span class="toc-text">2.1. 引入插件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#_配置"><span class="toc-text">2.2. 配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#_个性化设置"><span class="toc-text">2.3. 个性化设置</span></a></li></ol></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> The faintest ink is better than the best memory. </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        多模块项目MavenSite实战-2
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2019-09-17 08:21:01</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#Java" title="Java">Java</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#Maven" title="Maven">Maven</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#Work" title="Work">Work</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content no-indent">
+        <div class="paragraph">
+<p><strong class="red">Maven Site</strong> 的基本框架应该已经构建完毕了，在此基础上可以为这个网站 <strong class="red">添加一些干货</strong>。</p>
+</div>
+<div class="sect1">
+<h2 id="_asciidoc_插件">1. Asciidoc 插件</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>现在很多项目的文档都由 <strong class="red">Markdown格式</strong> 转变为 <strong class="red">Asciidoc格式</strong> ， 这里可以使用Asciidoc 插件将adoc后缀名的文档转换成 <strong class="red">html格式</strong> ，之后可以通过maven site 的 <strong class="red">site.xml 描述文件</strong>，做一个访问索引。</p>
+</div>
+<div class="sect2">
+<h3 id="_引入插件">1.1. 引入插件</h3>
+<div class="paragraph">
+<p>在pom.xml文件中找到 <strong class="red">plugins部分</strong>，插入以下代码，即可完成对 asciidoc plugin 的导入。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-xml" data-lang="xml"><span class="tag">&lt;<span class="name">plugins</span>&gt;</span>
+    <span class="tag">&lt;<span class="name">plugin</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.asciidoctor<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>asciidoctor-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.6.0/version&gt;
+        ...
+    <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span>
+<span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_运行设定">1.2. 运行设定</h3>
+<div class="paragraph">
+<p>只是简单的导入，插件是不会自己运行的，这里需要告诉它什么时候运行。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-xml" data-lang="xml"><span class="tag">&lt;<span class="name">plugin</span>&gt;</span>
+    ...
+    <span class="tag">&lt;<span class="name">executions</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">execution</span>&gt;</span>
+            <span class="tag">&lt;<span class="name">id</span>&gt;</span>output-html<span class="tag">&lt;/<span class="name">id</span>&gt;</span>
+            <span class="tag">&lt;<span class="name">phase</span>&gt;</span>site<span class="tag">&lt;/<span class="name">phase</span>&gt;</span>
+            <span class="tag">&lt;<span class="name">goals</span>&gt;</span>
+                <span class="tag">&lt;<span class="name">goal</span>&gt;</span>process-asciidoc<span class="tag">&lt;/<span class="name">goal</span>&gt;</span>
+            <span class="tag">&lt;/<span class="name">goals</span>&gt;</span>
+        <span class="tag">&lt;/<span class="name">execution</span>&gt;</span>
+    <span class="tag">&lt;/<span class="name">executions</span>&gt;</span>
+<span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>id : 可以随便更改，对应当前这个运行的代码的业务逻辑，这里是输出html文件</p>
+</li>
+<li>
+<p>phase : 对应的是 <strong class="red">maven的环节</strong>， 这里设置为[red]<strong>site</strong>，也就是说这个插件会在执行mvn site 命令时执行。当然也可以设置为其他的，最好不要设为compile，因为编译还没完成，就生成文档，没有太大意义。</p>
+</li>
+<li>
+<p>goal ： process-asciidoc 插件默认goal，无需修改。</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>希望在不同环节执行这个插件，可以 <strong class="red">添加多个 &lt;execution&gt;</strong> 代码块来解决。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_个性化配置">1.3. 个性化配置</h3>
+<div class="paragraph">
+<p>如果什么都不配置，也是可以安全运行的，但是如果adoc文件不在默认文件夹下，插件找不到它们，就无法把他们转换成html文件。</p>
+</div>
+<div class="sect3">
+<h4 id="_默认配置">1.3.1. 默认配置</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><strong class="red">sourceDirectory</strong> 源文件夹 ： $&#123;basedir&#125;/src/main/asciidoc</p>
+</li>
+<li>
+<p><strong class="red">sourceDocumentName</strong> 源文档名称 ： $&#123;sourceDirectory&#125;</p>
+</li>
+<li>
+<p><strong class="red">resources</strong> 资源文件 ： $&#123;sourceDirectory&#125;</p>
+</li>
+<li>
+<p><strong class="red">outputDirectory</strong> 输出路径 ： $&#123;project.build.directory&#125;/generated-docs</p>
+</li>
+<li>
+<p><strong class="red">doctype</strong> 文档类型 ： null &#8658; article</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_配置例子">1.3.2. 配置例子</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-xml" data-lang="xml"><span class="tag">&lt;<span class="name">plugin</span>&gt;</span>
+    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.asciidoctor<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>
+    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>asciidoctor-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span>
+    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.6.0/version&gt;
+    <span class="tag">&lt;<span class="name">executions</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">execution</span>&gt;</span>
+            <span class="tag">&lt;<span class="name">id</span>&gt;</span>output-html<span class="tag">&lt;/<span class="name">id</span>&gt;</span>
+            <span class="tag">&lt;<span class="name">phase</span>&gt;</span>site<span class="tag">&lt;/<span class="name">phase</span>&gt;</span>
+            <span class="tag">&lt;<span class="name">goals</span>&gt;</span>
+                <span class="tag">&lt;<span class="name">goal</span>&gt;</span>process-asciidoc<span class="tag">&lt;/<span class="name">goal</span>&gt;</span>
+            <span class="tag">&lt;/<span class="name">goals</span>&gt;</span>
+            <span class="tag">&lt;<span class="name">configuration</span>&gt;</span>
+              <span class="tag">&lt;<span class="name">sourceDirectory</span>&gt;</span>$&#123;project.basedir&#125;/src/site/asciidoc<span class="tag">&lt;/<span class="name">sourceDirectory</span>&gt;</span>
+              <span class="tag">&lt;<span class="name">sourceDocumentName</span>&gt;</span>../../../CHANGELOG.adoc<span class="tag">&lt;/<span class="name">sourceDocumentName</span>&gt;</span>
+              <span class="tag">&lt;<span class="name">outputDirectory</span>&gt;</span>$&#123;project.basedir&#125;/target/site<span class="tag">&lt;/<span class="name">outputDirectory</span>&gt;</span>
+              <span class="tag">&lt;<span class="name">backend</span>&gt;</span>html5<span class="tag">&lt;/<span class="name">backend</span>&gt;</span>
+              <span class="tag">&lt;<span class="name">sourceHighlighter</span>&gt;</span>coderay<span class="tag">&lt;/<span class="name">sourceHighlighter</span>&gt;</span>
+            <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span>
+        <span class="tag">&lt;/<span class="name">execution</span>&gt;</span>
+    <span class="tag">&lt;/<span class="name">executions</span>&gt;</span>
+<span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>在这个例子里， <strong class="red">所有adoc文件</strong> 将位于 <strong class="red">$&#123;project.basedir&#125;/src/site/asciidoc</strong> 文件夹下。</p>
+</div>
+<div class="paragraph">
+<p>这里有个特例，就是 <strong class="red">CHANGELOG.adoc文件</strong> ，也是 <strong class="red">release notes文件</strong> 位于项目的根目录下，想把这个单独的文件生成html文件，连接到项目的maven site中。这里使用了 <strong class="red">相对路径</strong>，方便插件定位这个文件 ../../../CHANGELOG.adoc。</p>
+</div>
+<div class="paragraph">
+<p>所有生成的文件将存储到$&#123;project.basedir&#125;/target/site文件夹中。</p>
+</div>
+<div class="paragraph">
+<p>生成的文件格式为html5， 同时使用 <strong class="red">代码高亮</strong> 设置。</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_swagger插件">2. swagger插件</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>项目中有网络服务的描述文件，通常为swagger格式的yaml或者json文件。</p>
+</div>
+<div class="paragraph">
+<p>将这些文件转换成asciidoc之后，然后转换成html文件，之后可以整合到maven site中。</p>
+</div>
+<div class="sect2">
+<h3 id="_引入插件_2">2.1. 引入插件</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-xml" data-lang="xml"><span class="tag">&lt;<span class="name">build</span>&gt;</span>
+    <span class="tag">&lt;<span class="name">plugins</span>&gt;</span>
+      <span class="tag">&lt;<span class="name">plugin</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>io.github.swagger2markup<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>swagger2markup-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.3.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span>
+      <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span>
+    <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span>
+<span class="tag">&lt;/<span class="name">build</span>&gt;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>这个插件的部分依赖不能从maven的repository库中找到，这时候要定义一个新的插件仓库 ：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-xml" data-lang="xml"><span class="tag">&lt;<span class="name">pluginRepositories</span>&gt;</span>
+    <span class="tag">&lt;<span class="name">pluginRepository</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">snapshots</span>&gt;</span>
+            <span class="tag">&lt;<span class="name">enabled</span>&gt;</span>false<span class="tag">&lt;/<span class="name">enabled</span>&gt;</span>
+        <span class="tag">&lt;/<span class="name">snapshots</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">id</span>&gt;</span>jcenter-releases<span class="tag">&lt;/<span class="name">id</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">name</span>&gt;</span>jcenter<span class="tag">&lt;/<span class="name">name</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://jcenter.bintray.com<span class="tag">&lt;/<span class="name">url</span>&gt;</span>
+    <span class="tag">&lt;/<span class="name">pluginRepository</span>&gt;</span>
+<span class="tag">&lt;/<span class="name">pluginRepositories</span>&gt;</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_配置">2.2. 配置</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-xml" data-lang="xml"><span class="tag">&lt;<span class="name">build</span>&gt;</span>
+    <span class="tag">&lt;<span class="name">plugins</span>&gt;</span>
+      <span class="tag">&lt;<span class="name">plugin</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>io.github.swagger2markup<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>swagger2markup-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.3.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">configuration</span>&gt;</span>
+          <span class="tag">&lt;<span class="name">swaggerInput</span>&gt;</span>$&#123;project.basedir&#125;/src/docs/swagger/swagger_petstore.yaml<span class="tag">&lt;/<span class="name">swaggerInput</span>&gt;</span>
+          <span class="tag">&lt;<span class="name">outputDir</span>&gt;</span>$&#123;project.build.directory&#125;/asciidoc<span class="tag">&lt;/<span class="name">outputDir</span>&gt;</span>
+          <span class="tag">&lt;<span class="name">config</span>&gt;</span>
+            <span class="tag">&lt;<span class="name">swagger2markup.markupLanguage</span>&gt;</span>ASCIIDOC<span class="tag">&lt;/<span class="name">swagger2markup.markupLanguage</span>&gt;</span>
+          <span class="tag">&lt;/<span class="name">config</span>&gt;</span>
+        <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span>
+      <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span>
+    <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span>
+<span class="tag">&lt;/<span class="name">build</span>&gt;</span></code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong class="red">swaggerInput</strong> ： swagger描述文件入口， 可以使用本地yaml文件，也可以使用网络链接</p>
+</li>
+<li>
+<p><strong class="red">outputDir</strong> ： 输出文件夹</p>
+</li>
+<li>
+<p><strong class="red">swagger2markup.markupLanguage</strong> ： 生成文件格式</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_个性化设置">2.3. 个性化设置</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-xml" data-lang="xml"><span class="tag">&lt;<span class="name">build</span>&gt;</span>
+    <span class="tag">&lt;<span class="name">plugins</span>&gt;</span>
+      <span class="tag">&lt;<span class="name">plugin</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>io.github.swagger2markup<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>swagger2markup-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.3.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">configuration</span>&gt;</span>
+          <span class="tag">&lt;<span class="name">swaggerInput</span>&gt;</span>$&#123;project.basedir&#125;/src/site/api/yaml<span class="tag">&lt;/<span class="name">swaggerInput</span>&gt;</span>
+          <span class="tag">&lt;<span class="name">outputFile</span>&gt;</span>$&#123;project.build.directory&#125;/asciidoc/$&#123;project.name&#125;_api<span class="tag">&lt;/<span class="name">outputFile</span>&gt;</span>
+          <span class="tag">&lt;<span class="name">config</span>&gt;</span>
+            <span class="tag">&lt;<span class="name">swagger2markup.markupLanguage</span>&gt;</span>ASCIIDOC<span class="tag">&lt;/<span class="name">swagger2markup.markupLanguage</span>&gt;</span>
+            <span class="tag">&lt;<span class="name">swagger2markup.lineSeparator</span>&gt;</span>UNIX<span class="tag">&lt;/<span class="name">swagger2markup.lineSeparator</span>&gt;</span>
+            <span class="tag">&lt;<span class="name">swagger2markup.generatedExample</span>&gt;</span>true<span class="tag">&lt;/<span class="name">swagger2markup.generatedExample</span>&gt;</span>
+          <span class="tag">&lt;/<span class="name">config</span>&gt;</span>
+        <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span>
+      <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span>
+    <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span>
+<span class="tag">&lt;/<span class="name">build</span>&gt;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>这里用 <strong class="red">outputFile</strong> 代替了 <strong class="red">outputDir</strong>， 因为如果使用outputDir，插件执行完会在输出目录中生成四个adoc文件 <strong class="red">overview，paths，definitions， security</strong>。</p>
+</div>
+<div class="paragraph">
+<p>使用outputFile，会把这四个部分整合到一个单独的文件中，文件名为 <strong class="red">$&#123;project.name&#125;_api</strong>， 因为是在父项目中定义了这个插件，这个插件将在项目中执行， 生成adoc文件时将用子项目名称来命名文件。</p>
+</div>
+<div class="paragraph">
+<p><strong class="red">generatedExample</strong> 为 true 将为文档中的api生成一些范例。</p>
+</div>
+</div>
+</div>
+</div>
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/morrisQiao">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+    </ul>
+    
+    <p>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = ""
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+
+
+
+
+</html>
